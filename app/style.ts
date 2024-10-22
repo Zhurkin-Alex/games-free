@@ -12,6 +12,9 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     background-color: #f8f9fa;
     color: #212529;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   a {

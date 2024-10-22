@@ -1,9 +1,16 @@
-"use client" 
+"use client"
+import styled from "styled-components";
+
+ 
+
+const StyledMain = styled.main`
+flex: 1;
+`
 const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <StyledMain>
       home page
-    </main>
+    </StyledMain>
   );
 }
 

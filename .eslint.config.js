@@ -1,9 +1,9 @@
 export default [
   {
-    ignores: ['node_modules'], // Игнорируем node_modules
+    ignores: ['node_modules'],
   },
   {
-    files: ['**/*.{js,jsx,ts,tsx}'], // Указываем расширения файлов
+    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       parserOptions: {
         ecmaVersion: 'latest',
