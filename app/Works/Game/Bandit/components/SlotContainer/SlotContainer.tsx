@@ -1,3 +1,4 @@
+"use client"
 import randomInt from '../../../../../services/_randomInt';
 import Slot from '../Slot/Slot';
 import style from './SlotContainer.module.scss';

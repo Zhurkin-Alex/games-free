@@ -1,3 +1,4 @@
+"use client"
 import style from './TitlePrize.module.scss';
 
 import slotBack from '../../img/slots/slot-back.png'

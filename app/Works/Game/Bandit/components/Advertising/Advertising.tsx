@@ -1,3 +1,4 @@
+"use client"
 import style from './Advertising.module.scss';
 
 import coin from '../../img/slots/coin.png'

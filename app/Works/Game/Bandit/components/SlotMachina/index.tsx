@@ -1,3 +1,4 @@
+"use client"
 import storageService from '../../../../../services/storageService';
 import { useEffect, useRef, useState } from 'react';
 import Advertising from '../Advertising/Advertising';
@@ -11,7 +12,7 @@ import { winMatrixData } from '../../data';
 import coin from '../../img/slots/coin.png'
 
 const SlotMachina = () => {
-  const isV2 = new URLSearchParams(window.location.search).get('v') === '2';
+//   const isV2 = new URLSearchParams(window.location.search).get('v') === '2';
   const [isDisabledBet, setDisabledBet] = useState(false);
   const [isRunning1, setIsRunning1] = useState(false);
   const [isRunning2, setIsRunning2] = useState(false);
@@ -33,7 +34,7 @@ const SlotMachina = () => {
   const [totalWin, setTotalWin] = useState(0);
   const [loss, setLoss] = useState(false);
   const [showWon, setShowWon] = useState(false);
-  const [winNumberSlot, setWinNumberSlot] = useState([]);
+  const [winNumberSlot, setWinNumberSlot] = useState<any[][]>([]);
   const audioRef1 = useRef<HTMLAudioElement | null>(null);
   const audioRef2 = useRef<HTMLAudioElement | null>(null);
   const audioRef3 = useRef<HTMLAudioElement | null>(null);
@@ -84,7 +85,7 @@ const SlotMachina = () => {
   );
   const [initialWidth, setInitialWidth] = useState(100);
   const [totalForWin, setTotalForWin] = useState(
-    storageService.get('totalForWin') || 3000,
+    Number(storageService.get('totalForWin')) || 3000,
   );
 
   /** function for update prize component - TitlePrize */
@@ -98,14 +99,14 @@ const SlotMachina = () => {
       setWidth(`${0}%`);
 
       storageService.set('widthPrize', `${0}%`);
-      storageService.set('totalForWin', 0);
+      storageService.set('totalForWin', '0');
     } else {
       setInitialWidth(newWidth);
       setTotalForWin(totalForWin - value);
       setWidth(`${newWidth}%`);
 
       storageService.set('widthPrize', `${newWidth}%`);
-      storageService.set('totalForWin', totalForWin - value);
+      storageService.set('totalForWin', (totalForWin - value).toString());
     }
   };
 
@@ -159,7 +160,7 @@ const SlotMachina = () => {
       }, 500);
 
       if (!showWon) {
-        storageService.set('cash', cash + winCash);
+        storageService.set('cash', (cash + winCash).toString());
         setCash(cash + winCash);
         updateTitlePrize(winCash);
       }
@@ -216,7 +217,7 @@ const SlotMachina = () => {
   const minusCash = () => {
     if (total <= cash) {
       setCash((prevCash) => prevCash - total);
-      storageService.set('cash', cash - total);
+      storageService.set('cash', (cash - total).toString());
     }
   };
 
@@ -225,9 +226,19 @@ const SlotMachina = () => {
     audioRef1.current?.pause();
     audioRef2.current?.pause();
     audioRef3.current?.pause();
-    audioRef1.current.currentTime = 0;
+    if (audioRef1.current) {
+        audioRef1.current.currentTime = 0;
+    }
+      
+    if (audioRef2.current) {
     audioRef2.current.currentTime = 0;
-    audioRef3.current.currentTime = 0;
+    }
+    if (audioRef3.current) {
+      audioRef3.current.currentTime = 0;
+    }
+    // audioRef1.current.currentTime = 0;
+    // audioRef2.current.currentTime = 0;
+    // audioRef3.current.currentTime = 0;
 
     setTotalWin(0);
     minusCash();
@@ -278,7 +289,7 @@ const SlotMachina = () => {
 
   /** function after touch on button for fun - test button */
   const addCashForFun = () => {
-    storageService.set('cash', 1500);
+    storageService.set('cash', '1500');
     setCash(1500);
     setTotal(50);
     setLoss(false);
@@ -295,7 +306,7 @@ const SlotMachina = () => {
         : `${window.location.href}&topup=${addCashADS}`,
     );
 
-    const varParam = isV2 ? `${urlParams.get('z')}_v2` : urlParams.get('z');
+    const varParam = urlParams.get('z');
     const ymid = storageService.get('userid');
 
     // window.dataLayer?.push({
@@ -313,7 +324,7 @@ const SlotMachina = () => {
   /** function after touch on push ads */
   const addCashPushHandler = () => {
     setTimeout(() => {
-      storageService.set('cash', 1200);
+      storageService.set('cash', '1200');
       setCash(1200);
       setTotal(50);
       setLoss(false);
@@ -321,7 +332,7 @@ const SlotMachina = () => {
     }, 10000);
 
     const varParamO = new URLSearchParams(window.location.search).get('z');
-    const varParam = isV2 ? `${varParamO}_v2` : varParamO;
+    const varParam = varParamO;
     const ymid = storageService.get('userid');
 
     // window.dataLayer?.push({
@@ -339,7 +350,7 @@ const SlotMachina = () => {
   /** function after touch on rewardis ads */
   const addCashRewardisHandler = () => {
     setTimeout(() => {
-      storageService.set('cash', 2000);
+      storageService.set('cash', '2000');
       setCash(2000);
       setTotal(50);
       setLoss(false);
@@ -347,7 +358,7 @@ const SlotMachina = () => {
     }, 10000);
 
     const varParamO = new URLSearchParams(window.location.search).get('z');
-    const varParam = isV2 ? `${varParamO}_v2` : varParamO;
+    const varParam = varParamO;
     const ymid = storageService.get('userid');
 
     // window.dataLayer?.push({
@@ -390,14 +401,14 @@ const SlotMachina = () => {
           // setLoss={setLoss}
         />
       )}
-      <div className={isV2 ? style.section_v2 : style.section}>
+      <div className={style.section}>
         <TitlePrize
           totalForWin={totalForWin}
           addCashRewardisHandler={addCashRewardisHandler}
           widthPrize={widthPrize}
         />
         <div className={style.cashWrapper}>
-          <div className={isV2 ? style.cashContainer_v2 : style.cashContainer}>
+          <div className={style.cashContainer}>
             <img src={coin.src} alt='image' className={style.coin} />
             <div className={style.cash}>{cash}</div>
           </div>

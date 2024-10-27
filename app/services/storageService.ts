@@ -1,5 +1,5 @@
 class StorageService {
-  storageFallback = null;
+  storageFallback: Record<string, string> = {}
 
   isLocalStorageAvailable = false;
 
@@ -38,7 +38,7 @@ class StorageService {
     }
   }
 
-  set(key, value, storage) {
+  set(key: string, value: string, storage?: 'local' | 'session') {
     if (this.isLocalStorageAvailable && storage !== 'session') {
       window.localStorage.setItem(key, value);
     } else if (this.isSessionStorageAvailable) {
@@ -48,7 +48,7 @@ class StorageService {
     }
   }
 
-  get(key, storage) {
+  get(key: string, storage?: 'local' | 'session') {
     let value;
 
     if (this.isLocalStorageAvailable && storage !== 'session') {
@@ -62,7 +62,7 @@ class StorageService {
     return value;
   }
 
-  clear(key, storage) {
+  clear(key: string, storage?: 'local' | 'session') {
     if (this.isLocalStorageAvailable && storage !== 'session') {
       window.localStorage.removeItem(key);
     } else if (this.isSessionStorageAvailable) {
@@ -73,8 +73,25 @@ class StorageService {
   }
 }
 
-if (window.storageService === undefined) {
-  window.storageService = new StorageService();
+interface IStorageService {
+  set(key: string, value: string, storage?: 'local' | 'session'): void;
+  get(key: string, storage?: 'local' | 'session'): string | null;
+  clear(key: string, storage?: 'local' | 'session'): void;
 }
 
-export default window.storageService;
+let storageService: IStorageService;
+
+if (typeof window !== 'undefined') {
+  if (!window.storageService) {
+    window.storageService = new StorageService();
+  }
+  storageService = window.storageService as IStorageService;
+} else {
+  storageService = {
+    set() {},
+    get() { return null; },
+    clear() {},
+  };
+}
+
+export default storageService;

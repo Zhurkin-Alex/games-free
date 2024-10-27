@@ -1,3 +1,4 @@
+"use client"
 import style from './ButtonContainer.module.scss';
 
 type ButtonContainerType = {

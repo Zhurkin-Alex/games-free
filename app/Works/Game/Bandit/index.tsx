@@ -1,3 +1,4 @@
+"use client"
 import SlotMachina from "./components/SlotMachina";
 import { StyledBody, StyledWrapper } from "./style";
 
