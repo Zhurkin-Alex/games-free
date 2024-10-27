@@ -1,0 +1,41 @@
+.total {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.total_plus, .total_minus {
+  font-family: 'Londrina Solid', sans-serif;
+  width: 50px;
+  border-radius: 15px;
+  background: linear-gradient(0deg,rgb(4 20 33 / 80%),rgb(4 20 33 / 80%)),linear-gradient(0deg,#1d3c55,#1d3c55);
+  border: 2px solid #1d3c55;
+  color:#ffffff;
+  font-size: 18px;
+}
+
+.button {
+  font-family: 'Londrina Solid', sans-serif;
+  width: 205px;
+  height: 50px;
+  min-width: max-content;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #58f2be 0%, #21b875 69.78%, #0ea070 100%);
+  border: none;
+  border-radius: 15px;
+  margin: 0 10px;
+  
+  &:active {
+    background: linear-gradient(180deg, #43c99c 0%, #149e61 69.78%, #097451 100%);
+  }
+}
+
+.total_bet {
+  margin-left: 10px;
+}

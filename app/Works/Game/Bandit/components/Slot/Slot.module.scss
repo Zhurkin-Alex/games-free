@@ -1,0 +1,55 @@
+.slot, .slot_v2 {
+  width: 115px;
+  height: 345px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease 0s;
+}
+
+.slot_v2 {
+  width: 80px;
+}
+
+.item {
+  width: 93%;
+  height: 93%;
+  position: absolute;
+  z-index: 1;
+  left: 4px;
+  top: 4px;
+  right: 0;
+  bottom: 0;
+}
+
+.anime {
+  height: 339px;
+}
+
+.border {
+  width: 115px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  // display: none;
+}
+
+.border_d {
+  display: none;
+}
+
+.border_gold {
+  width: 118px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  max-width: none;
+  // display: none;
+}
+
+.border_gold_d {
+  display: none;
+}

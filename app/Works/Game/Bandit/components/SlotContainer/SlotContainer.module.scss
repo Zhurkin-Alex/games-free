@@ -1,0 +1,11 @@
+.slotWindow {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-self: center;
+}
+
+.slotOne, .slotSecond, .slotThree {
+  display: flex;
+  justify-content: space-between;
+}

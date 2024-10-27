@@ -1,0 +1,129 @@
+.won_wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+  background: rgb(5 13 23 / 29%);
+  width: 100%;
+  z-index: 7;
+}
+
+.won_box {
+  border-radius: 30px;
+  height: 600px;
+  width: clamp(320px,98%,390px);
+  background: linear-gradient(0deg, #041421, #041421),
+    linear-gradient(0deg, #1d3c55, #1d3c55);
+
+}
+
+.won {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.task {
+  max-width: 280px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 110px auto;
+  align-items: center;
+}
+
+.title {
+  color:#ffffff;
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.buttonCash {
+  height: max-content;
+  font-size: 14px;
+  width: 95%;
+  text-align: start;
+  background: linear-gradient(180deg, #58f2be 0%, #21b875 69.78%, #0ea070 100%);
+  color: #ffffff;
+  border-radius: 14px;
+  border: none;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-family: 'Londrina Solid', sans-serif;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:active {
+    background: linear-gradient(180deg, #43c99c 0%, #149e61 69.78%, #097451 100%);
+  }
+}
+
+.buttonCashFalse {
+  font-family: 'Londrina Solid', sans-serif;
+  background: linear-gradient(180deg,#b5c9bb,#166e55);
+  height: max-content;
+  min-height: 50px;
+  font-size: 14px;
+  width: 95%;
+  text-align: start;
+  color: #ffffff;
+  border-radius: 15px;
+  border: none;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.addCash {
+  font-size: 24px;
+  font-weight: 700;
+  width: 85px;
+  height: 35px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222a30;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.text {
+  text-transform: uppercase;
+  margin-left: 10px;
+  font-size: 16px;
+  max-width: 140px;
+}
+
+.coin {
+  width: 18px;
+  height: 18px;
+  display: block;
+  max-width: initial;
+  margin-right: 5px;
+}
+
+.cash {
+  font-size: 18px;
+  background: linear-gradient(180deg,#f2af2b,#fcd641),linear-gradient(180deg,#ffe448,#eea023);
+  background-clip: text;
+  color: transparent;
+}

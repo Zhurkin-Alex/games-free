@@ -1,0 +1,66 @@
+.slotMashina {
+  width: 100%;
+}
+
+.section, .section_v2 {
+  display: flex;
+  flex-direction:column;
+  position: relative;
+  max-width: 345px;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+
+.section_v2 {
+  background: url('/img/slots/v2-slots-back.png') no-repeat center center;
+  background-size: contain;
+}
+
+.cashWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cashContainer, .cashContainer_v2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  border: 2px solid #1d3c55;
+  background: linear-gradient(0deg, rgb(4 20 33 / 80%), rgb(4 20 33 / 80%)),
+    linear-gradient(0deg, #1d3c55, #1d3c55);
+  width: 100%;
+  height: 57px;
+}
+
+.cashContainer_v2 {
+  background: url('/img/slots/v2-balance.png') no-repeat center 5px;
+  background-size: contain;
+  border: none;
+}
+
+.cash {
+  padding: 10px;
+  text-align: center;
+  background: linear-gradient(180deg, #f2af2b 0%, #fcd641 100%), linear-gradient(180deg, #ffe448 0%, #eea023 100%);
+  background-clip: text;
+  color: transparent;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.border {
+  width: 186px;
+  height: 70px;
+}
+
+.bet {
+  margin-right: 10px;
+}
+
+.coins {
+  color: #ffffff;
+  font-weight: 700;
+}

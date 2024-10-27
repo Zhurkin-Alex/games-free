@@ -1,0 +1,59 @@
+.won_wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+  background: rgb(5 13 23 / 29%);
+  width: 100%;
+  z-index: 7;
+}
+  
+.won_box {
+  border-radius: 30px;
+  width: clamp(320px,100%,390px);
+  height: 600px;
+  background: linear-gradient(0deg, #041421, #041421),
+    linear-gradient(0deg, #1d3c55, #1d3c55);
+
+}
+
+.won {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.win_page {
+  width: 90%;
+  height: auto;
+}
+
+.coins {
+  font-weight: 700;
+  background-image: linear-gradient(180deg, #ffe448 0%, #eea023 100%);
+  background-clip: text;
+  color: transparent;
+  font-size: 26px;
+}
+
+.collect {
+  font-family: 'Londrina Solid', sans-serif;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  width: 230px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #58f2be 0%, #21b875 69.78%, #0ea070 100%);
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  margin-top: 15px;
+
+  &:active {
+    background: linear-gradient(180deg, #43c99c 0%, #149e61 69.78%, #097451 100%);
+  }
+}

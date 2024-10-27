@@ -1,0 +1,70 @@
+.advertising {
+  max-width: 345px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+  
+.advertisingBack {
+  width: 300px;
+  height: 100px;
+  position: absolute;
+}
+  
+.advertisingBackGold {
+  width: 298px;
+  height: 100px;
+  position: absolute;
+}
+  
+.advertisingCard {
+  width: 292px;
+  height: 96px;
+  margin-left: 3px;
+  margin-top: 2px;
+  font-size: 25px;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  background: #ffffff;
+  flex-direction: column;
+  align-items: center;
+}
+  
+.advertisingCardGold {
+  font-family: 'Londrina Solid', sans-serif;
+  cursor: pointer;
+  height: 96px;
+  margin-top: 2px;
+  font-size: 25px;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  background: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  width: 286px;
+  margin-left: 6px;
+  border-radius: 10px;
+  z-index: 6;
+}
+  
+.progressBox {
+  height: 92px;
+  width: 287px;
+  position: absolute;
+}
+  
+.advertisingProgress {
+  background: rgb(0 0 0 / 65%);
+  max-width: 281px;
+  height: 92px;
+  position: absolute;
+  right: 0;
+  top: 4px;
+  border-radius: 5px;
+  z-index: 5;
+}
