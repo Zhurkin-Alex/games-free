@@ -63,7 +63,7 @@ const DropdownItem = styled.li`
   }
 `;
 
-const DropdownItemWorks = styled(DropdownItem)`
+const DropdownItemSlotMachine = styled(DropdownItem)`
   padding: 1rem;
   border-bottom: 1px solid #ccc;
   position: absolute;
@@ -79,4 +79,20 @@ const DropdownItemWorks = styled(DropdownItem)`
   }
 `;
 
-export {StyledNav, Hamburger, Dropdown, Submenu, DropdownItem, DropdownItemWorks}
+const DropdownItemMemoryMatch = styled(DropdownItem)`
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  position: absolute;
+  right: 84px;
+  top: 57px;
+  background-color: #ebebeb;
+  min-width: 125px;
+  cursor: pointer;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+`;
+
+export {StyledNav, Hamburger, Dropdown, Submenu, DropdownItem, DropdownItemSlotMachine, DropdownItemMemoryMatch}

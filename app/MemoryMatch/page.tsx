@@ -1,16 +1,15 @@
 'use client'
+
 import { ACTION_TYPE, useAppContext } from "../context/AppContext";
-import Bandit from "./Bandit";
 import { StyledWrapper } from "./style";
 
-const SlotMachine = () => {
+const MemoryMatch = () => {
     const { state, dispatch } = useAppContext();
     const clickWrapper = () => {
         dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: true })
     }
-    return <StyledWrapper onClick={clickWrapper}>
-        <Bandit />
-    </StyledWrapper>
+
+    return <StyledWrapper onClick={clickWrapper}>MemoryMatch</StyledWrapper>
 }
 
-export default SlotMachine;
+export default MemoryMatch;

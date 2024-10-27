@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Dropdown, DropdownItem, DropdownItemWorks, Hamburger, StyledNav, Submenu } from "./style";
+import { Dropdown, DropdownItem, DropdownItemMemoryMatch, DropdownItemSlotMachine, Hamburger, StyledNav, Submenu } from "./style";
 import { ACTION_TYPE, useAppContext } from "../context/AppContext";
 const BAR_COUNT = 3
 const Nav = () => {
@@ -41,9 +41,12 @@ const Nav = () => {
         <DropdownItem onClick={toggleSubmenu}>
           Games
           <Submenu $isOpen={isSubmenuOpen}>
-            <DropdownItemWorks>
+            <DropdownItemSlotMachine>
               <Link href="/SlotMachine">SlotMachine</Link>
-            </DropdownItemWorks>
+            </DropdownItemSlotMachine>
+            <DropdownItemMemoryMatch>
+              <Link href="/MemoryMatch">Memory Match</Link>
+            </DropdownItemMemoryMatch>
           </Submenu>
         </DropdownItem>
       </Dropdown>
