@@ -1,23 +1,22 @@
-"use client"
+"use client";
+
 import { Inter } from "next/font/google";
 import Nav from "./Nav";
 import { GlobalStyle } from "./style";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Nav />
-        {children}
-      </body>
+const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <html lang="en">
+    <head>
+      <title>Your App Title</title> {/* Optional: You can set a title for your app */}
       <GlobalStyle />
-    </html>
-  );
-}
+    </head>
+    <body className={inter.className}>
+      <Nav />
+      {children}
+    </body>
+  </html>
+);
+
+export default RootLayout;

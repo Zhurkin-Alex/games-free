@@ -1,5 +1,5 @@
 "use client";
-import styled from "styled-components";
+
 import Link from "next/link";
 import { useState } from "react";
 import { Dropdown, DropdownItem, DropdownItemWorks, Hamburger, StyledNav, Submenu } from "./style";
@@ -31,7 +31,7 @@ const Nav = () => {
           Games
           <Submenu $isOpen={isSubmenuOpen}>
             <DropdownItemWorks>
-              <Link href="/Game">SlotMachine</Link>
+              <Link href="/SlotMachine">SlotMachine</Link>
             </DropdownItemWorks>
           </Submenu>
         </DropdownItem>
