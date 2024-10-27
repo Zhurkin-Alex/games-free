@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Dropdown, DropdownItem, DropdownItemWorks, Hamburger, StyledNav, Submenu } from "./style";
-import { useAppContext } from "../context/AppContext";
+import { ACTION_TYPE, useAppContext } from "../context/AppContext";
 const BAR_COUNT = 3
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,12 +12,12 @@ const Nav = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(true);
-    dispatch({ type: "OVERLAY_CLICK_ClOSE_BURGER", payload: false })
+    dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: false })
   };
 
   const toggleSubmenu = () => {
     setIsSubmenuOpen(true);
-    dispatch({ type: "OVERLAY_CLICK_ClOSE_BURGER", payload: false })
+    dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: false })
   };
 
   useEffect(() => {

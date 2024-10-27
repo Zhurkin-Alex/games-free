@@ -1,17 +1,17 @@
 import { createContext, useContext, useReducer, ReactNode, Dispatch } from "react";
 
 interface AppState {
-  someState: string;
   overLayClickCloseBurger: boolean
 }
 
+export enum ACTION_TYPE {
+  setOverlayClickCloseBurger = 'setOverlayClickCloseBurger',
+}
+
 type Action = 
-  | { type: "SET_STATE"; payload: string }
-  | { type: "RESET_STATE" }
-  | { type: "OVERLAY_CLICK_ClOSE_BURGER"; payload: boolean }
+  | { type: ACTION_TYPE.setOverlayClickCloseBurger; payload: boolean }
 
 const initialState: AppState = {
-  someState: "initial value",
   overLayClickCloseBurger: false,
 };
 
@@ -19,12 +19,8 @@ const AppContext = createContext<{ state: AppState; dispatch: Dispatch<Action> }
 
 const reducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
-    case "SET_STATE":
-      return { ...state, someState: action.payload };
-    case "OVERLAY_CLICK_ClOSE_BURGER":
+    case ACTION_TYPE.setOverlayClickCloseBurger:
       return { ...state, overLayClickCloseBurger: action.payload };
-    case "RESET_STATE":
-      return initialState;
     default:
       return state;
   }

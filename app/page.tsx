@@ -1,6 +1,6 @@
 "use client"
 import styled from "styled-components";
-import { useAppContext } from "./context/AppContext";
+import { ACTION_TYPE, useAppContext } from "./context/AppContext";
 
  
 
@@ -11,7 +11,7 @@ const Home = () => {
   const { state, dispatch } = useAppContext();
 
   const clickMenu = () => {
-    dispatch({ type: "OVERLAY_CLICK_ClOSE_BURGER", payload: true })
+    dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: true })
   };
 
   return (
