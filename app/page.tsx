@@ -7,7 +7,7 @@ import { ACTION_TYPE, useAppContext } from "./context/AppContext";
 const StyledMain = styled.main`
 flex: 1;
 `
-const Home = () => {
+const App = () => {
   const { state, dispatch } = useAppContext();
 
   const clickMenu = () => {
@@ -21,4 +21,4 @@ const Home = () => {
   );
 }
 
-export default Home
+export default App
