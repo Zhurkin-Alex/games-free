@@ -92,8 +92,6 @@ const SlotMachina = () => {
   const updateTitlePrize = (value: number): void => {
     const newWidth = initialWidth - (value / 3000) * 100;
 
-    console.warn('updateWidth', value, newWidth);
-
     if (newWidth < 0) {
       setTotalForWin(0);
       setWidth(`${0}%`);
@@ -236,9 +234,6 @@ const SlotMachina = () => {
     if (audioRef3.current) {
       audioRef3.current.currentTime = 0;
     }
-    // audioRef1.current.currentTime = 0;
-    // audioRef2.current.currentTime = 0;
-    // audioRef3.current.currentTime = 0;
 
     setTotalWin(0);
     minusCash();
@@ -289,10 +284,10 @@ const SlotMachina = () => {
 
   /** function after touch on button for fun - test button */
   const addCashForFun = () => {
-    storageService.set('cash', '1500');
     setCash(1500);
     setTotal(50);
     setLoss(false);
+    storageService.set('cash', '1500');
   };
 
   /** function after touch on button ads */
@@ -396,9 +391,6 @@ const SlotMachina = () => {
           addCashPushDisable={addCashPushDisable}
           addCashRewardisDisable={addCashRewardisDisable}
           addCashForFun={addCashForFun}
-          // setCash={setCash}
-          // setTotal={setTotal}
-          // setLoss={setLoss}
         />
       )}
       <div className={style.section}>
