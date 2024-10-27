@@ -12,7 +12,6 @@ import { winMatrixData } from '../../data';
 import coin from '../../img/slots/coin.png'
 
 const SlotMachina = () => {
-//   const isV2 = new URLSearchParams(window.location.search).get('v') === '2';
   const [isDisabledBet, setDisabledBet] = useState(false);
   const [isRunning1, setIsRunning1] = useState(false);
   const [isRunning2, setIsRunning2] = useState(false);
@@ -41,24 +40,23 @@ const SlotMachina = () => {
   const audioRefLos = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const cache = Number(storageService.get('cash'));
-    const interval = setInterval(() => {
-      if (cash !== cache) {
-        setCash(cache);
-      } else if (cache === 0) {
-        setLoss(true);
-      }
+    const cashStore = Number(storageService.get('cash'));
 
-      if (loss && cache > 0) {
-        setLoss(false);
-      }
-    }, 500);
-
-    if (cache === 0) {
+    if (cash !== cashStore && storageService.get('cash') !== null) {
+      setCash(cashStore);
+    } else if (cashStore === 0 && storageService.get('cash') !== null) {
       setLoss(true);
     }
 
-    return () => clearInterval(interval);
+    if (loss && cashStore > 0) {
+      setLoss(false);
+    }
+
+
+    if (cashStore === 0 && storageService.get('cash') !== null) {
+      setLoss(true);
+    }
+
   }, []);
 
   const compareArrays = (arr1: any, arr2: any) => {
