@@ -1,5 +1,5 @@
 "use client"
-import storageService from '../../../../../services/storageService';
+import storageService from '../../../../services/storageService';
 import { useEffect, useRef, useState } from 'react';
 import Advertising from '../Advertising/Advertising';
 import ButtonContainer from '../ButtonContainer/ButtonContainer';
