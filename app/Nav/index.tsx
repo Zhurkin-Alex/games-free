@@ -106,10 +106,10 @@ const Nav = () => {
           <Link href="/">Home</Link>
         </DropdownItem>
         <DropdownItem onClick={toggleSubmenu}>
-          My works
+          Games
           <Submenu $isOpen={isSubmenuOpen}>
             <DropdownItemWorks>
-              <Link href="/Game">Game</Link>
+              <Link href="/Game">SlotMachine</Link>
             </DropdownItemWorks>
           </Submenu>
         </DropdownItem>
