@@ -1,23 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dropdown, DropdownItem, DropdownItemWorks, Hamburger, StyledNav, Submenu } from "./style";
+import { useAppContext } from "../context/AppContext";
 const BAR_COUNT = 3
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const { state, dispatch } = useAppContext();
 
   const toggleMenu = () => {
-    setIsMenuOpen((prevState) => !prevState);
+    setIsMenuOpen(true);
+    dispatch({ type: "OVERLAY_CLICK_ClOSE_BURGER", payload: false })
   };
 
   const toggleSubmenu = () => {
-    setIsSubmenuOpen((prevState) => !prevState);
+    setIsSubmenuOpen(true);
+    dispatch({ type: "OVERLAY_CLICK_ClOSE_BURGER", payload: false })
   };
 
+  useEffect(() => {
+    if (state.overLayClickCloseBurger && isMenuOpen) {
+      setIsSubmenuOpen(false);
+      setIsMenuOpen(false);
+    }
+  },[state.overLayClickCloseBurger])
+
   return (
-    <StyledNav>
+    <StyledNav >
       <Hamburger onClick={toggleMenu}>
       {Array.from({ length: BAR_COUNT }, (_, index) => (
         <div key={index} />

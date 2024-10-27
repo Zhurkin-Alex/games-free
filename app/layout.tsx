@@ -3,6 +3,7 @@
 import { Inter } from "next/font/google";
 import Nav from "./Nav";
 import { GlobalStyle } from "./style";
+import { AppProvider } from "./context/AppContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,8 +14,10 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
       <GlobalStyle />
     </head>
     <body className={inter.className}>
-      <Nav />
-      {children}
+      <AppProvider>
+        <Nav />
+        {children}
+      </AppProvider>
     </body>
   </html>
 );
