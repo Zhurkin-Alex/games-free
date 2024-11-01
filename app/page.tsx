@@ -1,6 +1,7 @@
 "use client"
 import styled from "styled-components";
 import { ACTION_TYPE, useAppContext } from "./context/AppContext";
+import { useEffect, useState } from "react";
 
  
 
@@ -9,12 +10,18 @@ flex: 1;
 `
 const App = () => {
   const { state, dispatch } = useAppContext();
-  const url = new URL(window.location.href)
-  const srcUrl = url.searchParams.get('src')
-  let srcIframe = "https://vk.com/video_ext.php?oid=825304720&id=456239112&hd=2&autoplay=1" 
-  if (srcUrl) {
-    srcIframe = srcUrl
-  }
+
+  const [srcIframe, setSrcIframe] = useState("https://vk.com/video_ext.php?oid=825304720&id=456239112&hd=2&autoplay=1");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      const srcUrl = url.searchParams.get('src');
+      if (srcUrl) {
+        setSrcIframe(srcUrl);
+      }
+    }
+  }, []);
 
   const clickMenu = () => {
     dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: true })
