@@ -1,4 +1,5 @@
 "use client"
+import React from 'react';
 import storageService from '../../../../services/storageService';
 import { useEffect, useRef, useState } from 'react';
 import Advertising from '../Advertising/Advertising';
@@ -33,7 +34,7 @@ const SlotMachina = () => {
   const [totalWin, setTotalWin] = useState(0);
   const [loss, setLoss] = useState(false);
   const [showWon, setShowWon] = useState(false);
-  const [winNumberSlot, setWinNumberSlot] = useState<any[][]>([]);
+  const [winNumberSlot, setWinNumberSlot] = useState<number[][]>([]);
   const audioRef1 = useRef<HTMLAudioElement | null>(null);
   const audioRef2 = useRef<HTMLAudioElement | null>(null);
   const audioRef3 = useRef<HTMLAudioElement | null>(null);
@@ -59,7 +60,7 @@ const SlotMachina = () => {
 
   }, []);
 
-  const compareArrays = (arr1: any, arr2: any) => {
+  const compareArrays = (arr1: number[], arr2: number[]) => {
     if (!arr1 || !arr2) {
       return false;
     }
@@ -106,9 +107,8 @@ const SlotMachina = () => {
     }
   };
 
-  const checkWin = (exitSlot: any) => {
+  const checkWin = (exitSlot: number[]) => {
     let winCash = 0;
-    const ymid = storageService.get('userid');
     const winSlotArray = [];
 
     for (const key in winMatrixData) {
@@ -148,11 +148,6 @@ const SlotMachina = () => {
       setTimeout(() => {
         setShowWon(true);
         setDisabledBet(false);
-        // window.dataLayer?.push({
-        //   event: 'SlotMashineWin',
-        //   casinoTotalWin: winCash,
-        //   casinoUserid: ymid,
-        // });
       }, 500);
 
       if (!showWon) {
@@ -162,9 +157,6 @@ const SlotMachina = () => {
       }
     } else if (!winCash && cash <= 0 && !showWon && countStep >= 1) {
       setTimeout(() => {
-        // window.dataLayer?.push({
-        //   event: 'SlotMashineAddCashShow',
-        // });
         audioRefLos?.current?.play();
         setLoss(true);
       }, 500);
@@ -236,7 +228,6 @@ const SlotMachina = () => {
     setTotalWin(0);
     minusCash();
     setWinNumberSlot([]);
-    const ymid = storageService.get('userid');
 
     if (total <= cash && total > 0 && isDisabledBet === false) {
       setCountStep((prev) => prev + 1);
@@ -260,9 +251,6 @@ const SlotMachina = () => {
         audioRef2.current?.pause();
         audioRef3.current?.play();
         setIsRunning3(false);
-        // audioRef3.current.addEventListener('ended', () => {
-        //   setDisabledBet(false);
-        // });
         setDisabledBet(false);
       }, 2000);
     }
@@ -302,11 +290,6 @@ const SlotMachina = () => {
     const varParam = urlParams.get('z');
     const ymid = storageService.get('userid');
 
-    // window.dataLayer?.push({
-    //   event: 'SlotMashineAddCash',
-    //   casinoWatchAds: true,
-    //   casinoUserid: ymid,
-    // });
 
     window.open(
       `https://hturnshal.com/link?z=6488031&var=${varParam}&ymid=${ymid}&var_4=${returnUrl}`,
@@ -328,12 +311,6 @@ const SlotMachina = () => {
     const varParam = varParamO;
     const ymid = storageService.get('userid');
 
-    // window.dataLayer?.push({
-    //   event: 'SlotMashineAddCash',
-    //   casinoSubPush: true,
-    //   casinoUserid: ymid,
-    // });
-
     window.open(
       `https://oodrampi.com/4/6491841?var=${varParam}&ymid=${ymid}`,
       '_blank',
@@ -353,12 +330,6 @@ const SlotMachina = () => {
     const varParamO = new URLSearchParams(window.location.search).get('z');
     const varParam = varParamO;
     const ymid = storageService.get('userid');
-
-    // window.dataLayer?.push({
-    //   event: 'SlotMashineAddCash',
-    //   casinoRegRevardis: true,
-    //   casinoUserid: ymid,
-    // });
 
     window.open(
       `https://ptaumtee.com/link?z=6488027&var=${varParam}&ymid=${ymid}`,
@@ -381,7 +352,6 @@ const SlotMachina = () => {
       {showWon && <Prize setShowWon={setShowWon} totalWin={totalWin} />}
       {loss && (
         <Advertising
-          addCashADSDisable={addCashADSDisable}
           addCashADSHandler={addCashADSHandler}
           addCashPushHandler={addCashPushHandler}
           addCashRewardisHandler={addCashRewardisHandler}

@@ -1,10 +1,15 @@
 "use client"
-import { useEffect, useRef, useState } from 'react';
+import React,{ useEffect, useRef, useState } from 'react';
 import style from './Prize.module.scss';
 
 import win from '../../img/slots/win.png'
 
-function Prize({ setShowWon, totalWin }: any) {
+interface IPrize {
+  setShowWon: (el: boolean) => void
+  totalWin: number
+}
+
+const Prize = ({ setShowWon, totalWin }: IPrize) => {
   const [count, setCount] = useState(0);
 
   const collectHandler = () => {

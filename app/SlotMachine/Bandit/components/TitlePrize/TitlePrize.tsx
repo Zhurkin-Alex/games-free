@@ -1,4 +1,5 @@
 "use client"
+import React from 'react';
 import style from './TitlePrize.module.scss';
 
 import slotBack from '../../img/slots/slot-back.png'

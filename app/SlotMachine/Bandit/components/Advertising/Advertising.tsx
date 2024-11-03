@@ -1,9 +1,19 @@
 "use client"
 import style from './Advertising.module.scss';
-
+import React from "react";
 import coin from '../../img/slots/coin.png'
-function Advertising({
-  addCashADSDisable,
+
+interface IAdvertising {
+  addCashADSHandler: () => void
+  addCashPushHandler: () => void
+  addCashRewardisHandler: () => void
+  addCashADS: number
+  addCashPushDisable: boolean
+  addCashRewardisDisable: boolean
+  addCashForFun: () => void
+}
+
+const Advertising = ({
   addCashADSHandler,
   addCashPushHandler,
   addCashRewardisHandler,
@@ -11,7 +21,7 @@ function Advertising({
   addCashPushDisable,
   addCashRewardisDisable,
   addCashForFun,
-}: any) {
+}: IAdvertising) => {
   return (
     <div className={style.won_wrapper}>
       <div className={style.won_box}>

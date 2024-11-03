@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { Dropdown, DropdownItem, DropdownItemMemoryMatch, DropdownItemSlotMachine, Hamburger, StyledNav, Submenu } from "./style";
 import { ACTION_TYPE, useAppContext } from "../context/AppContext";
 const BAR_COUNT = 3

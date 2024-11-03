@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ACTION_TYPE, useAppContext } from "../context/AppContext";
 import { StyledButtonFirst, StyledButtonSecond, StyledButtonStart, StyledContainerButton, StyledGameContainer, StyledGameOver, StyledSquare, StyledWrapper } from "./style";
 
@@ -18,7 +18,7 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 const MemoryMatch = () => {
-  const { state, dispatch } = useAppContext();
+  const { dispatch } = useAppContext();
   const clickWrapper = () => {
     dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: true });
   }

@@ -1,4 +1,5 @@
 "use client"
+import React from 'react';
 import style from './ButtonContainer.module.scss';
 
 type ButtonContainerType = {

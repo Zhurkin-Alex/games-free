@@ -1,10 +1,20 @@
 "use client"
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import style from './Slot.module.scss';
 
 import slotBack from '../../img/slots/slot-back.png'
 import slotBackGold from '../../img/slots/slot-back-gold.png'
+
+interface ISlot {
+  isRunning: boolean
+  symbols: string[]
+  timeInterval: number
+  startIndex: number
+  setViewLastPage: (el:number) => void
+  slot: number
+  winNumberSlot: number[][]
+}
 
 const Slot = ({
   isRunning,
@@ -14,18 +24,18 @@ const Slot = ({
   setViewLastPage,
   slot,
   winNumberSlot,
-}: any) => {
+}: ISlot) => {
   const [currentSymbolIndex, setCurrentSymbolIndex] = useState(startIndex);
   const [winSlot, setwinSlot] = useState(false);
 
   useEffect(() => {
-    let interval: any;
+    let interval:  NodeJS.Timeout;
 
     setwinSlot(false);
 
     if (isRunning) {
       interval = setInterval(() => {
-        setCurrentSymbolIndex((prevIndex: any) => {
+        setCurrentSymbolIndex((prevIndex: number) => {
           if (prevIndex === symbols.length - 1) {
             return 0;
           }

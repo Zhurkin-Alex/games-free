@@ -21,6 +21,7 @@ class StorageService {
 
       return true;
     } catch (e) {
+      console.debug(e)
       return false;
     }
   }
@@ -34,6 +35,7 @@ class StorageService {
 
       return true;
     } catch (e) {
+      console.debug(e)
       return false;
     }
   }
