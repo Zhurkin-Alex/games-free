@@ -35,8 +35,37 @@ const StyledButtonSecond = styled(StyledButton)<{ $isActive?: boolean }>`
 `;
 
 const StyledButtonStart =  styled(StyledButton)`
-    background: #000
+    background: #000;
+`
+
+const StyledGameContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 50%;
+    margin: 0 auto;
 `
 
 
-export {StyledWrapper, StyledContainerButton, StyledButtonFirst, StyledButtonSecond, StyledButtonStart}
+const StyledSquare = styled.div<{ isFlipped: boolean; isMatched: boolean; color: string }>`
+  width: 100%;
+  height: 100px;
+  background-color: ${({ isFlipped, isMatched, color }) => (isFlipped || isMatched ? color : '#333')};
+  opacity: ${({ isMatched }) => (isMatched ? 0.1 : 1)};
+  cursor: pointer;
+`;
+
+const StyledGameOver = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #333;
+    z-index: 1000,
+`
+
+
+export {StyledGameOver, StyledWrapper, StyledContainerButton, StyledButtonFirst, StyledButtonSecond, StyledButtonStart, StyledGameContainer, StyledSquare}

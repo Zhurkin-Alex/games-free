@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ACTION_TYPE, useAppContext } from "../context/AppContext";
-import { StyledButtonFirst, StyledButtonSecond, StyledButtonStart, StyledContainerButton, StyledWrapper } from "./style";
+import { StyledButtonFirst, StyledButtonSecond, StyledButtonStart, StyledContainerButton, StyledGameContainer, StyledGameOver, StyledSquare, StyledWrapper } from "./style";
 
 type Square = {
   id: number;
@@ -125,50 +125,26 @@ const MemoryMatch = () => {
             <h2>Timer: {timer}s</h2>
             <h2>Score: {score}</h2>
           </div>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: `repeat(4, 1fr)`,
-              gap: '10px',
-              marginTop: '20px',
-              maxWidth: '50%',
-              margin: '0 auto',
-            }}
-          >
+          <StyledGameContainer>
             {squares.map((square) => (
-              <div
+              <StyledSquare
                 key={square.id}
+                isFlipped={square.isFlipped}
+                isMatched={square.isMatched}
+                color={square.color}
                 onClick={() => handleSquareClick(square)}
-                style={{
-                  width: '100%',
-                  height: '100px',
-                  backgroundColor: square.isFlipped || square.isMatched ? square.color : '#333',
-                  opacity: square.isMatched ? 0.1 : 1,
-                  cursor: 'pointer',
-                }}
-              ></div>
+            />
             ))}
-          </div>
+          </StyledGameContainer>
         </>
       )}
       {gameOver && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            backgroundColor: 'white',
-            padding: '20px',
-            border: '2px solid #333',
-            zIndex: 1000,
-          }}
-        >
+        <StyledGameOver>
           <h2>Game Over!</h2>
           <p>Final Score: {score}</p>
           <p>Time Taken: {timer}s</p>
           <button onClick={initializeGame}>Play Again</button>
-        </div>
+        </StyledGameOver>
       )}
     </StyledWrapper>
   );
