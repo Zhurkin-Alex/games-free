@@ -1,14 +1,25 @@
 {
   "extends": [
-    "next/core-web-vitals",
+    "next",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
+    "eslint-config-prettier",
+    "plugin:prettier/recommended",
+    "prettier",
     "plugin:prettier/recommended"
   ],
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
     "prettier/prettier": "error",
     "@typescript-eslint/no-unused-vars": "warn",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
+  },
+  
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

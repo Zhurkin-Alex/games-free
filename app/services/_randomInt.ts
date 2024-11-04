@@ -5,7 +5,7 @@ function randomInt(min: number = 0, max: number = 0): number {
 
   // max included
   return Math.floor(
-    Math.random() * ((+max || 0) + 1 - (+min || 0)) + (+min || 0),
+    Math.random() * ((+max || 0) + 1 - (+min || 0)) + (+min || 0)
   );
 }
 
