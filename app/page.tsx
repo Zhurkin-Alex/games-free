@@ -7,7 +7,10 @@ import { useEffect, useState } from "react";
  
 
 const StyledMain = styled.main`
-flex: 1;
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  margin: 50px 0 0;
 `
 const App = () => {
   const { dispatch } = useAppContext();
