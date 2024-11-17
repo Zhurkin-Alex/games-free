@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { ACTION_TYPE, useAppContext } from "../context/AppContext";
-import { StyledButtonFirst, StyledButtonSecond, StyledButtonStart, StyledContainerButton, StyledGameContainer, StyledGameOver, StyledSquare, StyledWrapper } from "./style";
+import { StyledButtonFirst, StyledButtonSecond, StyledButtonStart, StyledContainerButton, StyledGameContainer, StyledGameOver, StyledSquare, StyledWrapper, colors } from "./style";
 
 type Square = {
   id: number;
@@ -10,8 +10,6 @@ type Square = {
   isFlipped: boolean;
   isMatched: boolean;
 };
-
-const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFC300', '#DAF7A6', '#581845', '#C70039'];
 
 function shuffleArray<T>(array: T[]): T[] {
   return array.sort(() => Math.random() - 0.5);
@@ -91,7 +89,7 @@ const MemoryMatch = () => {
         )
       );
       setScore((prevScore) => prevScore + attempts);
-      setAttempts(10); // Reset attempts for the next match
+      setAttempts(10);
     } else {
       setTimeout(() => {
         setSquares((prevSquares) =>
@@ -116,7 +114,7 @@ const MemoryMatch = () => {
       {!gameStarted ? (
         <StyledContainerButton>
           <StyledButtonFirst $isActive={activeButton === 'first'} onClick={() => clickButton('first', 12)}>12 Squares</StyledButtonFirst>
-          <StyledButtonSecond $isActive={activeButton === 'second'} onClick={() => clickButton('second', 12)}>16 Squares</StyledButtonSecond>
+          <StyledButtonSecond $isActive={activeButton === 'second'} onClick={() => clickButton('second', 16)}>16 Squares</StyledButtonSecond>
           <StyledButtonStart onClick={initializeGame}>Start Game</StyledButtonStart>
         </StyledContainerButton>
       ) : (

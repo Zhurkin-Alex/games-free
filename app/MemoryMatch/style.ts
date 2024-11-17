@@ -43,8 +43,11 @@ const StyledGameContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     margin-top: 20px;
-    max-width: 50%;
-    margin: 0 auto;
+    width: 95%;
+    margin: 15px auto 0;
+    @media (min-width: 768px) {
+      max-width: 50%;
+    }
 `
 
 
@@ -67,5 +70,6 @@ const StyledGameOver = styled.div`
     z-index: 1000,
 `
 
+const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFC300', '#DAF7A6', '#581845', '#C70039'];
 
-export {StyledGameOver, StyledWrapper, StyledContainerButton, StyledButtonFirst, StyledButtonSecond, StyledButtonStart, StyledGameContainer, StyledSquare}
+export {colors, StyledGameOver, StyledWrapper, StyledContainerButton, StyledButtonFirst, StyledButtonSecond, StyledButtonStart, StyledGameContainer, StyledSquare}
