@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, createContext, useContext, useReducer } from 'react'
+import React, { Dispatch, ReactNode, createContext, useContext, useReducer } from 'react'
 
 interface AppState {
   overLayClickCloseBurger: boolean
