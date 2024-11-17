@@ -111,12 +111,10 @@ const StyledMarqueeText = styled.div`
     display: flex;
     white-space: nowrap;
     animation: marquee 7s linear infinite;
-    /* animation: marquee 3s steps(1, start) infinite; */
     font-weight: 700;
     text-transform: uppercase;
     @media (min-width: 768px) {
-      animation: marquee 14s linear infinite;
-      /* animation: marquee 7s linear infinite; */
+      animation: marquee 35s linear infinite;
     }
   }
 
