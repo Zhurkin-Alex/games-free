@@ -1,18 +1,18 @@
 'use client'
 
 // import { useEffect, useState } from 'react'
-// import styled from 'styled-components'
+import styled from 'styled-components'
 
-// import { ACTION_TYPE, useAppContext } from './context/AppContext'
+import { ACTION_TYPE, useAppContext } from './context/AppContext'
 
-// const StyledMain = styled.main`
-//   flex: 1;
-//   justify-content: center;
-//   display: flex;
-//   margin: 50px 0 0;
-// `
+const StyledMain = styled.main`
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  margin: 50px 0 0;
+`
 const App = () => {
-  // const { dispatch } = useAppContext()
+  const { dispatch } = useAppContext()
 
   // const [srcIframe, setSrcIframe] = useState(
   //   'https://vk.com/video_ext.php?oid=825304720&id=456239112&hd=2&autoplay=1',
@@ -28,15 +28,15 @@ const App = () => {
   //   }
   // }, [])
 
-  // const clickMenu = () => {
-  //   dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: true })
-  // }
+  const clickMenu = () => {
+    dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: true })
+  }
 
   return (
-    <div>home</div>
-    // <StyledMain onClick={clickMenu}>
-    //   <iframe src={srcIframe} width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"  allowFullScreen></iframe>
-    // </StyledMain>
+    <StyledMain onClick={clickMenu}>
+      home
+      {/* <iframe src={srcIframe} width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"  allowFullScreen></iframe> */}
+    </StyledMain>
   )
 }
 
