@@ -37,7 +37,7 @@ const Dropdown = styled.ul<{ $isOpen: boolean }>`
   margin: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: ${props => (props.$isOpen ? 'block' : 'none')};
-  z-index: 1;
+  z-index: 2;
 `
 
 const Submenu = styled.ul<{ $isOpen: boolean }>`
@@ -53,6 +53,8 @@ const DropdownItem = styled.li`
   border-bottom: 1px solid #ccc;
   position: relative;
   cursor: pointer;
+  background: linear-gradient(to bottom, black, darkblue);
+  color: gold;
 
   &:last-child {
     border-bottom: none;
@@ -60,7 +62,7 @@ const DropdownItem = styled.li`
 
   a {
     text-decoration: none;
-    color: black;
+    color: gold;
   }
 `
 
@@ -76,7 +78,7 @@ const DropdownItemSlotMachine = styled(DropdownItem)`
 
   a {
     text-decoration: none;
-    color: black;
+    color: gold;
   }
 `
 
@@ -92,7 +94,7 @@ const DropdownItemMemoryMatch = styled(DropdownItem)`
 
   a {
     text-decoration: none;
-    color: black;
+    color: gold;
   }
 `
 
