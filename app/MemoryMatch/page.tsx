@@ -127,8 +127,8 @@ const MemoryMatch = () => {
             {squares.map((square) => (
               <StyledSquare
                 key={square.id}
-                isFlipped={square.isFlipped}
-                isMatched={square.isMatched}
+                $isFlipped={square.isFlipped}
+                $isMatched={square.isMatched}
                 color={square.color}
                 onClick={() => handleSquareClick(square)}
             />

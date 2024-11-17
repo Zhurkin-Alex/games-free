@@ -32,9 +32,10 @@ const App = () => {
   };
 
   return (
-    <StyledMain onClick={clickMenu}>
-      <iframe src={srcIframe} width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"  allowFullScreen></iframe>
-    </StyledMain>
+    <div>home</div>
+    // <StyledMain onClick={clickMenu}>
+    //   <iframe src={srcIframe} width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"  allowFullScreen></iframe>
+    // </StyledMain>
   );
 }
 

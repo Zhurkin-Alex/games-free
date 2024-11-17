@@ -51,11 +51,11 @@ const StyledGameContainer = styled.div`
 `
 
 
-const StyledSquare = styled.div<{ isFlipped: boolean; isMatched: boolean; color: string }>`
+const StyledSquare = styled.div<{ $isFlipped: boolean; $isMatched: boolean; color: string }>`
   width: 100%;
   height: 100px;
-  background-color: ${({ isFlipped, isMatched, color }) => (isFlipped || isMatched ? color : '#333')};
-  opacity: ${({ isMatched }) => (isMatched ? 0.1 : 1)};
+  background-color: ${({ $isFlipped, $isMatched, color }) => ($isFlipped || $isMatched ? color : '#333')};
+  opacity: ${({ $isMatched }) => ($isMatched ? 0.1 : 1)};
   cursor: pointer;
 `;
 

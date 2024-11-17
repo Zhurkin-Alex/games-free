@@ -10,13 +10,18 @@ const Nav = () => {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
   const { state, dispatch } = useAppContext();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(true);
+  const toggleSubmenu = () => {
+    setIsSubmenuOpen(true);
     dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: false })
   };
 
-  const toggleSubmenu = () => {
-    setIsSubmenuOpen(true);
+  const toggleMenu = () => {
+    if (isMenuOpen) {
+      setIsSubmenuOpen(false);
+      setIsMenuOpen(false);
+    } else {
+      setIsMenuOpen(true);
+    }
     dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: false })
   };
 

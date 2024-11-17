@@ -103,24 +103,29 @@ const StyledMarqueeText = styled.div`
   align-items: center;
   color: white;
   font-size: 16px;
+  margin-right: 10px;
 
   .marquee-content {
     display: flex;
     white-space: nowrap;
     animation: marquee 7s linear infinite;
-    font-weight: bold;
+    /* animation: marquee 3s steps(1, start) infinite; */
     font-weight: 700;
     text-transform: uppercase;
     @media (min-width: 768px) {
-      animation: marquee 12s linear infinite;
+      animation: marquee 14s linear infinite;
+      /* animation: marquee 7s linear infinite; */
     }
   }
 
   @keyframes marquee {
-    from {
+    0% {
       transform: translateX(100%);
     }
-    to {
+    90% {
+      transform: translateX(-100%);
+    }
+    100% {
       transform: translateX(-100%);
     }
   }
