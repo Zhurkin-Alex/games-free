@@ -47,7 +47,7 @@ const Nav = () => {
     <StyledNav>
       <StyledMarqueeText>
         <div className="marquee-content">
-          <span>Место для вашей рекламы</span>
+          <span>Place for your advertisement</span>
         </div>
       </StyledMarqueeText>
       <Hamburger onClick={toggleMenu}>
