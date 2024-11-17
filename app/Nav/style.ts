@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledNav = styled.nav`
+  background: linear-gradient(to right, black, darkblue);
   position: relative;
   width: 100%;
   background-color: white;
@@ -20,9 +21,9 @@ const Hamburger = styled.div`
   justify-content: space-around;
 
   div {
+    background-color: #cccbcb;
     width: 100%;
     height: 4px;
-    background-color: black;
   }
 `;
 
@@ -95,4 +96,35 @@ const DropdownItemMemoryMatch = styled(DropdownItem)`
   }
 `;
 
-export {StyledNav, Hamburger, Dropdown, Submenu, DropdownItem, DropdownItemSlotMachine, DropdownItemMemoryMatch}
+const StyledMarqueeText = styled.div`
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+
+  .marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 7s linear infinite;
+    font-weight: bold;
+    font-weight: 700;
+    text-transform: uppercase;
+    @media (min-width: 768px) {
+      animation: marquee 12s linear infinite;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+`;
+
+
+export {StyledMarqueeText, StyledNav, Hamburger, Dropdown, Submenu, DropdownItem, DropdownItemSlotMachine, DropdownItemMemoryMatch}

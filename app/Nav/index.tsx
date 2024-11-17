@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React,{ useEffect, useState } from "react";
-import { Dropdown, DropdownItem, DropdownItemMemoryMatch, DropdownItemSlotMachine, Hamburger, StyledNav, Submenu } from "./style";
+import { Dropdown, DropdownItem, DropdownItemMemoryMatch, DropdownItemSlotMachine, Hamburger, StyledMarqueeText, StyledNav, Submenu } from "./style";
 import { ACTION_TYPE, useAppContext } from "../context/AppContext";
 const BAR_COUNT = 3
 const Nav = () => {
@@ -29,6 +29,11 @@ const Nav = () => {
 
   return (
     <StyledNav >
+      <StyledMarqueeText>
+        <div className="marquee-content">
+          <span>Место для вашей рекламы</span>
+        </div>
+      </StyledMarqueeText>
       <Hamburger onClick={toggleMenu}>
       {Array.from({ length: BAR_COUNT }, (_, index) => (
         <div key={index} />
