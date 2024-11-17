@@ -42,15 +42,16 @@ const StyledButtonContainer = styled.div`
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
-    padding: 15px 30px;
     border-radius: 10px;
     text-align: center;
     transition:
       transform 0.3s,
       box-shadow 0.3s;
-    height: 100px;
     display: flex;
     align-items: center;
+    flex-direction: column;
+    padding: 5px;
+    width: 200px;
 
     &:hover {
       transform: scale(1.05);
@@ -71,4 +72,11 @@ const StyledButtonContainer = styled.div`
   }
 `
 
-export { GlobalStyle, StyledGameButtons, StyledButtonContainer }
+const StyledPage = styled.div`
+  font-size: 60px;
+`
+
+const StyledText = styled.div`
+`
+
+export { StyledPage, StyledText, GlobalStyle, StyledGameButtons, StyledButtonContainer }

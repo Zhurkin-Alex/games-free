@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import { ACTION_TYPE, useAppContext } from './context/AppContext'
 import back from './img/back_casino.webp'
-import { StyledButtonContainer, StyledGameButtons } from './style'
+import { StyledButtonContainer, StyledGameButtons, StyledPage, StyledText } from './style'
 
 const StyledMain = styled.main`
   flex: 1;
@@ -34,13 +34,15 @@ const App = () => {
             className="slotMachine"
             href="/SlotMachine"
           >
-            🎰 Play Slot Machine
+            <StyledPage>🎰</StyledPage>
+            <StyledText>Slot Machine</StyledText>
           </Link>
           <Link
             className="memory"
             href="/MemoryMatch"
           >
-            🧠 Play Memory Game
+            <StyledPage>🧠</StyledPage>
+            <StyledText>Memory Game</StyledText>
           </Link>
         </StyledButtonContainer>
       </StyledGameButtons>
