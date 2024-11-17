@@ -37,14 +37,17 @@ const StyledButtonContainer = styled.div`
   height: 100px;
   flex-wrap: wrap;
 
-  .slotMachine, .memory {
+  .slotMachine,
+  .memory {
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
     padding: 15px 30px;
     border-radius: 10px;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition:
+      transform 0.3s,
+      box-shadow 0.3s;
     height: 100px;
     display: flex;
     align-items: center;

@@ -163,7 +163,7 @@ const MemoryMatch = () => {
           <button onClick={initializeGame}>Play Again</button>
         </StyledGameOver>
       )}
-      <StyledBackGround $backGround={backGround.src}/>
+      <StyledBackGround $backGround={backGround.src} />
     </StyledWrapper>
   )
 }

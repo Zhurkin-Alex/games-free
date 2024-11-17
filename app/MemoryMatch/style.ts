@@ -82,8 +82,8 @@ const colors = [
   '#C70039',
 ]
 
-const StyledBackGround = styled.img<{$backGround: string}>`
-  background: url(${props => props.$backGround &&  props.$backGround});
+const StyledBackGround = styled.img<{ $backGround: string }>`
+  background: url(${props => props.$backGround && props.$backGround});
   background-size: cover;
   background-position: center;
   width: 100%;
