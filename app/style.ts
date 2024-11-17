@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -23,4 +23,49 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export { GlobalStyle }
+const StyledGameButtons = styled.div`
+  display: flex;
+  align-items: center;
+  z-index: 1;
+`
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  height: 100px;
+  flex-wrap: wrap;
+
+  .slotMachine, .memory {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .slotMachine {
+    background: linear-gradient(45deg, black, gold);
+    color: white;
+    border: 2px solid gold;
+  }
+
+  .memory {
+    background: linear-gradient(45deg, lightblue, white);
+    color: black;
+    border: 2px solid lightblue;
+  }
+`
+
+export { GlobalStyle, StyledGameButtons, StyledButtonContainer }

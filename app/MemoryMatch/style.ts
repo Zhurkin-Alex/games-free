@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const StyledWrapper = styled.div`
   min-height: 100vh;
   text-align: center;
+  position: relative;
 `
 
 const StyledContainerButton = styled.div`
@@ -81,7 +82,20 @@ const colors = [
   '#C70039',
 ]
 
+const StyledBackGround = styled.img<{$backGround: string}>`
+  background: url(${props => props.$backGround &&  props.$backGround});
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+`
+
 export {
+  StyledBackGround,
   colors,
   StyledGameOver,
   StyledWrapper,

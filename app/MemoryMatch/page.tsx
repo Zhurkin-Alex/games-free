@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from 'react'
 
 import { ACTION_TYPE, useAppContext } from '../context/AppContext'
+import backGround from '../img/back_memory.webp'
 import {
+  StyledBackGround,
   StyledButtonFirst,
   StyledButtonSecond,
   StyledButtonStart,
@@ -161,6 +163,7 @@ const MemoryMatch = () => {
           <button onClick={initializeGame}>Play Again</button>
         </StyledGameOver>
       )}
+      <StyledBackGround $backGround={backGround.src}/>
     </StyledWrapper>
   )
 }
