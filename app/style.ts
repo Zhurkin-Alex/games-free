@@ -76,7 +76,6 @@ const StyledPage = styled.div`
   font-size: 60px;
 `
 
-const StyledText = styled.div`
-`
+const StyledText = styled.div``
 
 export { StyledPage, StyledText, GlobalStyle, StyledGameButtons, StyledButtonContainer }
