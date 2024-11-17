@@ -2,9 +2,10 @@
   width: 100%;
 }
 
-.section, .section_v2 {
+.section,
+.section_v2 {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   position: relative;
   max-width: 345px;
   margin: 0 auto;
@@ -23,7 +24,8 @@
   margin-bottom: 10px;
 }
 
-.cashContainer, .cashContainer_v2 {
+.cashContainer,
+.cashContainer_v2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +46,8 @@
 .cash {
   padding: 10px;
   text-align: center;
-  background: linear-gradient(180deg, #f2af2b 0%, #fcd641 100%), linear-gradient(180deg, #ffe448 0%, #eea023 100%);
+  background: linear-gradient(180deg, #f2af2b 0%, #fcd641 100%),
+    linear-gradient(180deg, #ffe448 0%, #eea023 100%);
   background-clip: text;
   color: transparent;
   font-size: 24px;

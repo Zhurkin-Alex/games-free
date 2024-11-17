@@ -1,7 +1,7 @@
 declare global {
-    interface Window {
-      storageService: IStorageService;
-    }
+  interface Window {
+    storageService: IStorageService
+  }
 }
 
-export {};
+export {}

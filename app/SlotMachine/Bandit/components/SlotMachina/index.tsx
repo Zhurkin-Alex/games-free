@@ -1,24 +1,25 @@
-"use client"
-import React from 'react';
-import storageService from '../../../../services/storageService';
-import { useEffect, useRef, useState } from 'react';
-import Advertising from '../Advertising/Advertising';
-import ButtonContainer from '../ButtonContainer/ButtonContainer';
-import Prize from '../Prize/Prize';
-import TitlePrize from '../TitlePrize/TitlePrize';
-import SlotContainer from '../SlotContainer/SlotContainer';
-import style from './SlotMachina.module.scss';
-import { winMatrixData } from '../../data';
+'use client'
 
+import React from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+import storageService from '../../../../services/storageService'
+import { winMatrixData } from '../../data'
 import coin from '../../img/slots/coin.png'
+import Advertising from '../Advertising/Advertising'
+import ButtonContainer from '../ButtonContainer/ButtonContainer'
+import Prize from '../Prize/Prize'
+import SlotContainer from '../SlotContainer/SlotContainer'
+import TitlePrize from '../TitlePrize/TitlePrize'
+import style from './SlotMachina.module.scss'
 
 const SlotMachina = () => {
-  const [isDisabledBet, setDisabledBet] = useState(false);
-  const [isRunning1, setIsRunning1] = useState(false);
-  const [isRunning2, setIsRunning2] = useState(false);
-  const [isRunning3, setIsRunning3] = useState(false);
-  const [cash, setCash] = useState(Number(storageService.get('cash')) || 1000);
-  const [total, setTotal] = useState(100);
+  const [isDisabledBet, setDisabledBet] = useState(false)
+  const [isRunning1, setIsRunning1] = useState(false)
+  const [isRunning2, setIsRunning2] = useState(false)
+  const [isRunning3, setIsRunning3] = useState(false)
+  const [cash, setCash] = useState(Number(storageService.get('cash')) || 1000)
+  const [total, setTotal] = useState(100)
   const [slotIndexes, setSlotIndexes] = useState({
     slot1: 0,
     slot2: 0,
@@ -29,327 +30,319 @@ const SlotMachina = () => {
     slot7: 0,
     slot8: 0,
     slot9: 0,
-  });
-  const [countStep, setCountStep] = useState(0);
-  const [totalWin, setTotalWin] = useState(0);
-  const [loss, setLoss] = useState(false);
-  const [showWon, setShowWon] = useState(false);
-  const [winNumberSlot, setWinNumberSlot] = useState<number[][]>([]);
-  const audioRef1 = useRef<HTMLAudioElement | null>(null);
-  const audioRef2 = useRef<HTMLAudioElement | null>(null);
-  const audioRef3 = useRef<HTMLAudioElement | null>(null);
-  const audioRefLos = useRef<HTMLAudioElement | null>(null);
+  })
+  const [countStep, setCountStep] = useState(0)
+  const [totalWin, setTotalWin] = useState(0)
+  const [loss, setLoss] = useState(false)
+  const [showWon, setShowWon] = useState(false)
+  const [winNumberSlot, setWinNumberSlot] = useState<number[][]>([])
+  const audioRef1 = useRef<HTMLAudioElement | null>(null)
+  const audioRef2 = useRef<HTMLAudioElement | null>(null)
+  const audioRef3 = useRef<HTMLAudioElement | null>(null)
+  const audioRefLos = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    const cashStore = Number(storageService.get('cash'));
+    const cashStore = Number(storageService.get('cash'))
 
     if (cash !== cashStore && storageService.get('cash') !== null) {
-      setCash(cashStore);
+      setCash(cashStore)
     } else if (cashStore === 0 && storageService.get('cash') !== null) {
-      setLoss(true);
+      setLoss(true)
     }
 
     if (loss && cashStore > 0) {
-      setLoss(false);
+      setLoss(false)
     }
-
 
     if (cashStore === 0 && storageService.get('cash') !== null) {
-      setLoss(true);
+      setLoss(true)
     }
-
-  }, []);
+  }, [])
 
   const compareArrays = (arr1: number[], arr2: number[]) => {
     if (!arr1 || !arr2) {
-      return false;
+      return false
     }
 
     // Проверяем, имеют ли массивы одинаковую длину
     if (arr1.length !== arr2.length) {
-      return false;
+      return false
     }
 
     for (let i = 0; i < arr1.length; i += 1) {
       if (arr2[i] === 1 && arr1[i] !== arr1[arr2.indexOf(1)]) {
-        return false; // Нашли несовпадение, выходим из цикла
+        return false // Нашли несовпадение, выходим из цикла
       }
     }
 
-    return true;
-  };
+    return true
+  }
 
-  const [widthPrize, setWidth] = useState(
-    storageService.get('widthPrize') || '100%',
-  );
-  const [initialWidth, setInitialWidth] = useState(100);
-  const [totalForWin, setTotalForWin] = useState(
-    Number(storageService.get('totalForWin')) || 3000,
-  );
+  const [widthPrize, setWidth] = useState(storageService.get('widthPrize') || '100%')
+  const [initialWidth, setInitialWidth] = useState(100)
+  const [totalForWin, setTotalForWin] = useState(Number(storageService.get('totalForWin')) || 3000)
 
   /** function for update prize component - TitlePrize */
   const updateTitlePrize = (value: number): void => {
-    const newWidth = initialWidth - (value / 3000) * 100;
+    const newWidth = initialWidth - (value / 3000) * 100
 
     if (newWidth < 0) {
-      setTotalForWin(0);
-      setWidth(`${0}%`);
+      setTotalForWin(0)
+      setWidth(`${0}%`)
 
-      storageService.set('widthPrize', `${0}%`);
-      storageService.set('totalForWin', '0');
+      storageService.set('widthPrize', `${0}%`)
+      storageService.set('totalForWin', '0')
     } else {
-      setInitialWidth(newWidth);
-      setTotalForWin(totalForWin - value);
-      setWidth(`${newWidth}%`);
+      setInitialWidth(newWidth)
+      setTotalForWin(totalForWin - value)
+      setWidth(`${newWidth}%`)
 
-      storageService.set('widthPrize', `${newWidth}%`);
-      storageService.set('totalForWin', (totalForWin - value).toString());
+      storageService.set('widthPrize', `${newWidth}%`)
+      storageService.set('totalForWin', (totalForWin - value).toString())
     }
-  };
+  }
 
   const checkWin = (exitSlot: number[]) => {
-    let winCash = 0;
-    const winSlotArray = [];
+    let winCash = 0
+    const winSlotArray = []
 
     for (const key in winMatrixData) {
       if (Object.prototype.hasOwnProperty.call(winMatrixData, key)) {
-        const { matrix, win } = winMatrixData[key];
+        const { matrix, win } = winMatrixData[key]
 
-        const checkArray = compareArrays(exitSlot, matrix);
+        const checkArray = compareArrays(exitSlot, matrix)
 
         if (checkArray) {
-          setDisabledBet(true);
+          setDisabledBet(true)
           /** добавляем массив с выигрышными комбинациями */
           // const winSlotArray = [];
 
           for (let el = 0; el < matrix.length; el += 1) {
             if (matrix[el] === 1) {
-              const positionMatrix = el;
-              const indexWin = exitSlot[el];
-              const winSlot = [positionMatrix, indexWin];
+              const positionMatrix = el
+              const indexWin = exitSlot[el]
+              const winSlot = [positionMatrix, indexWin]
 
-              winSlotArray.push(winSlot);
+              winSlotArray.push(winSlot)
             }
           }
-          setWinNumberSlot(winSlotArray);
+          setWinNumberSlot(winSlotArray)
 
           if (total > 50) {
-            winCash = Math.round((total * 1.5 + win) / 50) * 50;
+            winCash = Math.round((total * 1.5 + win) / 50) * 50
           } else {
-            winCash += win;
+            winCash += win
           }
         }
       }
     }
 
     if (winCash) {
-      setTotalWin(winCash + totalWin);
+      setTotalWin(winCash + totalWin)
 
       setTimeout(() => {
-        setShowWon(true);
-        setDisabledBet(false);
-      }, 500);
+        setShowWon(true)
+        setDisabledBet(false)
+      }, 500)
 
       if (!showWon) {
-        storageService.set('cash', (cash + winCash).toString());
-        setCash(cash + winCash);
-        updateTitlePrize(winCash);
+        storageService.set('cash', (cash + winCash).toString())
+        setCash(cash + winCash)
+        updateTitlePrize(winCash)
       }
     } else if (!winCash && cash <= 0 && !showWon && countStep >= 1) {
       setTimeout(() => {
-        audioRefLos?.current?.play();
-        setLoss(true);
-      }, 500);
+        audioRefLos?.current?.play()
+        setLoss(true)
+      }, 500)
     }
-  };
+  }
 
   /**  watch for spine */
   useEffect(() => {
     if (!isDisabledBet && countStep >= 1) {
-      const exitSlot = Object.values(slotIndexes);
+      const exitSlot = Object.values(slotIndexes)
 
-      checkWin(exitSlot);
+      checkWin(exitSlot)
 
       if (total > cash) {
-        setTotal(cash);
+        setTotal(cash)
       }
     }
-  }, [slotIndexes]);
+  }, [slotIndexes])
 
   const totalMinus = () => {
-    setTotal((prevTotal) => {
-      const newTotal = prevTotal;
-      const step = 50;
+    setTotal(prevTotal => {
+      const newTotal = prevTotal
+      const step = 50
 
       if (total > 0) {
-        return newTotal - step;
+        return newTotal - step
       }
 
-      return newTotal;
-    });
-  };
+      return newTotal
+    })
+  }
 
   const totalPlus = () => {
-    setTotal((prevTotal) => {
-      const newTotal = prevTotal;
-      const step = 50;
+    setTotal(prevTotal => {
+      const newTotal = prevTotal
+      const step = 50
 
       if (total < cash) {
-        return newTotal + step;
+        return newTotal + step
       }
 
-      return newTotal;
-    });
-  };
+      return newTotal
+    })
+  }
 
   const minusCash = () => {
     if (total <= cash) {
-      setCash((prevCash) => prevCash - total);
-      storageService.set('cash', (cash - total).toString());
+      setCash(prevCash => prevCash - total)
+      storageService.set('cash', (cash - total).toString())
     }
-  };
+  }
 
   /** start play */
   const startSlotMachine = () => {
-    audioRef1.current?.pause();
-    audioRef2.current?.pause();
-    audioRef3.current?.pause();
+    audioRef1.current?.pause()
+    audioRef2.current?.pause()
+    audioRef3.current?.pause()
     if (audioRef1.current) {
-        audioRef1.current.currentTime = 0;
+      audioRef1.current.currentTime = 0
     }
-      
+
     if (audioRef2.current) {
-    audioRef2.current.currentTime = 0;
+      audioRef2.current.currentTime = 0
     }
     if (audioRef3.current) {
-      audioRef3.current.currentTime = 0;
+      audioRef3.current.currentTime = 0
     }
 
-    setTotalWin(0);
-    minusCash();
-    setWinNumberSlot([]);
+    setTotalWin(0)
+    minusCash()
+    setWinNumberSlot([])
 
     if (total <= cash && total > 0 && isDisabledBet === false) {
-      setCountStep((prev) => prev + 1);
-      setDisabledBet(true);
-      setIsRunning1(true);
-      setIsRunning2(true);
-      setIsRunning3(true);
+      setCountStep(prev => prev + 1)
+      setDisabledBet(true)
+      setIsRunning1(true)
+      setIsRunning2(true)
+      setIsRunning3(true)
 
-      setCash(Number(storageService.get('cash')));
+      setCash(Number(storageService.get('cash')))
 
       setTimeout(() => {
-        setIsRunning1(false);
-        audioRef1.current?.play();
-      }, 1000);
+        setIsRunning1(false)
+        audioRef1.current?.play()
+      }, 1000)
       setTimeout(() => {
-        audioRef1.current?.pause();
-        audioRef2.current?.play();
-        setIsRunning2(false);
-      }, 1500);
+        audioRef1.current?.pause()
+        audioRef2.current?.play()
+        setIsRunning2(false)
+      }, 1500)
       setTimeout(() => {
-        audioRef2.current?.pause();
-        audioRef3.current?.play();
-        setIsRunning3(false);
-        setDisabledBet(false);
-      }, 2000);
+        audioRef2.current?.pause()
+        audioRef3.current?.play()
+        setIsRunning3(false)
+        setDisabledBet(false)
+      }, 2000)
     }
 
     if (cash <= 0) {
-      setDisabledBet(false);
-      setIsRunning1(false);
-      setIsRunning2(false);
-      setIsRunning3(false);
+      setDisabledBet(false)
+      setIsRunning1(false)
+      setIsRunning2(false)
+      setIsRunning3(false)
     }
-  };
+  }
 
-  const [addCashADSDisable, setAddCashADSDisable] = useState(false);
-  const [addCashPushDisable, setAddCashPushDisable] = useState(false);
-  const [addCashRewardisDisable, setAddCashRewardisDisable] = useState(false);
-  const [addCashADS, setAddCashADS] = useState(600);
+  const [addCashADSDisable, setAddCashADSDisable] = useState(false)
+  const [addCashPushDisable, setAddCashPushDisable] = useState(false)
+  const [addCashRewardisDisable, setAddCashRewardisDisable] = useState(false)
+  const [addCashADS, setAddCashADS] = useState(600)
 
   /** function after touch on button for fun - test button */
   const addCashForFun = () => {
-    setCash(1500);
-    setTotal(50);
-    setLoss(false);
-    storageService.set('cash', '1500');
-  };
+    setCash(1500)
+    setTotal(50)
+    setLoss(false)
+    storageService.set('cash', '1500')
+  }
 
   /** function after touch on button ads */
   const addCashADSHandler = () => {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search)
     const returnUrl = encodeURIComponent(
       window.location.hostname === 'do.th61.com'
         ? `https://do.th61.com/back.html?S=${urlParams.get(
             's',
           )}&Z=${urlParams.get('z')}&topup=${addCashADS}`
         : `${window.location.href}&topup=${addCashADS}`,
-    );
+    )
 
-    const varParam = urlParams.get('z');
-    const ymid = storageService.get('userid');
-
+    const varParam = urlParams.get('z')
+    const ymid = storageService.get('userid')
 
     window.open(
       `https://hturnshal.com/link?z=6488031&var=${varParam}&ymid=${ymid}&var_4=${returnUrl}`,
       '_blank',
-    );
-  };
+    )
+  }
 
   /** function after touch on push ads */
   const addCashPushHandler = () => {
     setTimeout(() => {
-      storageService.set('cash', '1200');
-      setCash(1200);
-      setTotal(50);
-      setLoss(false);
-      setAddCashPushDisable(true);
-    }, 10000);
+      storageService.set('cash', '1200')
+      setCash(1200)
+      setTotal(50)
+      setLoss(false)
+      setAddCashPushDisable(true)
+    }, 10000)
 
-    const varParamO = new URLSearchParams(window.location.search).get('z');
-    const varParam = varParamO;
-    const ymid = storageService.get('userid');
+    const varParamO = new URLSearchParams(window.location.search).get('z')
+    const varParam = varParamO
+    const ymid = storageService.get('userid')
 
-    window.open(
-      `https://oodrampi.com/4/6491841?var=${varParam}&ymid=${ymid}`,
-      '_blank',
-    );
-  };
+    window.open(`https://oodrampi.com/4/6491841?var=${varParam}&ymid=${ymid}`, '_blank')
+  }
 
   /** function after touch on rewardis ads */
   const addCashRewardisHandler = () => {
     setTimeout(() => {
-      storageService.set('cash', '2000');
-      setCash(2000);
-      setTotal(50);
-      setLoss(false);
-      setAddCashRewardisDisable(true);
-    }, 10000);
+      storageService.set('cash', '2000')
+      setCash(2000)
+      setTotal(50)
+      setLoss(false)
+      setAddCashRewardisDisable(true)
+    }, 10000)
 
-    const varParamO = new URLSearchParams(window.location.search).get('z');
-    const varParam = varParamO;
-    const ymid = storageService.get('userid');
+    const varParamO = new URLSearchParams(window.location.search).get('z')
+    const varParam = varParamO
+    const ymid = storageService.get('userid')
 
-    window.open(
-      `https://ptaumtee.com/link?z=6488027&var=${varParam}&ymid=${ymid}`,
-      '_blank',
-    );
-  };
+    window.open(`https://ptaumtee.com/link?z=6488027&var=${varParam}&ymid=${ymid}`, '_blank')
+  }
 
   /** look for all ads, and after touch for all button - cash for button ads - 1000 */
   useEffect(() => {
     if (addCashADSDisable && addCashPushDisable && addCashRewardisDisable) {
-      const cashDefault = 1000;
+      const cashDefault = 1000
 
-      setAddCashADS(cashDefault);
-      setAddCashADSDisable(false);
+      setAddCashADS(cashDefault)
+      setAddCashADSDisable(false)
     }
-  }, [addCashADSDisable, addCashPushDisable, addCashRewardisDisable]);
+  }, [addCashADSDisable, addCashPushDisable, addCashRewardisDisable])
 
   return (
     <div className={style.slotMashina}>
-      {showWon && <Prize setShowWon={setShowWon} totalWin={totalWin} />}
+      {showWon && (
+        <Prize
+          setShowWon={setShowWon}
+          totalWin={totalWin}
+        />
+      )}
       {loss && (
         <Advertising
           addCashADSHandler={addCashADSHandler}
@@ -369,7 +362,11 @@ const SlotMachina = () => {
         />
         <div className={style.cashWrapper}>
           <div className={style.cashContainer}>
-            <img src={coin.src} alt='image' className={style.coin} />
+            <img
+              src={coin.src}
+              alt="image"
+              className={style.coin}
+            />
             <div className={style.cash}>{cash}</div>
           </div>
         </div>
@@ -389,28 +386,52 @@ const SlotMachina = () => {
           totalPlus={totalPlus}
         />
         <audio ref={audioRef1}>
-          <source src='/audio/slotMachina/blip.mp3' type='audio/mpeg' />
+          <source
+            src="/audio/slotMachina/blip.mp3"
+            type="audio/mpeg"
+          />
           {/* Add a track element without captions */}
-          <track kind='captions' label='No captions available' />
+          <track
+            kind="captions"
+            label="No captions available"
+          />
         </audio>
         <audio ref={audioRef2}>
-          <source src='/audio/slotMachina/blip.mp3' type='audio/mpeg' />
+          <source
+            src="/audio/slotMachina/blip.mp3"
+            type="audio/mpeg"
+          />
           {/* Add a track element without captions */}
-          <track kind='captions' label='No captions available' />
+          <track
+            kind="captions"
+            label="No captions available"
+          />
         </audio>
         <audio ref={audioRef3}>
-          <source src='/audio/slotMachina/blip.mp3' type='audio/mpeg' />
+          <source
+            src="/audio/slotMachina/blip.mp3"
+            type="audio/mpeg"
+          />
           {/* Add a track element without captions */}
-          <track kind='captions' label='No captions available' />
+          <track
+            kind="captions"
+            label="No captions available"
+          />
         </audio>
         <audio ref={audioRefLos}>
-          <source src='/audio/slotMachina/los.mp3' type='audio/mpeg' />
+          <source
+            src="/audio/slotMachina/los.mp3"
+            type="audio/mpeg"
+          />
           {/* Add a track element without captions */}
-          <track kind='captions' label='No captions available' />
+          <track
+            kind="captions"
+            label="No captions available"
+          />
         </audio>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SlotMachina;
+export default SlotMachina

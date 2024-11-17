@@ -1,16 +1,18 @@
-"use client"
-import React from "react";
-import SlotMachina from "./components/SlotMachina";
-import { StyledBody, StyledWrapper } from "./style";
+'use client'
 
-const  Bandit = () => {
-    return (
-        <StyledWrapper>
-            <StyledBody>
-              <SlotMachina />
-            </StyledBody>
-        </StyledWrapper>
-    );
+import React from 'react'
+
+import SlotMachina from './components/SlotMachina'
+import { StyledBody, StyledWrapper } from './style'
+
+const Bandit = () => {
+  return (
+    <StyledWrapper>
+      <StyledBody>
+        <SlotMachina />
+      </StyledBody>
+    </StyledWrapper>
+  )
 }
 
-export default Bandit;
+export default Bandit

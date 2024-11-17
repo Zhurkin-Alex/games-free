@@ -9,14 +9,12 @@
   width: 100%;
   z-index: 7;
 }
-  
+
 .won_box {
   border-radius: 30px;
-  width: clamp(320px,100%,390px);
+  width: clamp(320px, 100%, 390px);
   height: 600px;
-  background: linear-gradient(0deg, #041421, #041421),
-    linear-gradient(0deg, #1d3c55, #1d3c55);
-
+  background: linear-gradient(0deg, #041421, #041421), linear-gradient(0deg, #1d3c55, #1d3c55);
 }
 
 .won {

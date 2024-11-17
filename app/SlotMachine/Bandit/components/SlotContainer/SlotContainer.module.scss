@@ -5,7 +5,9 @@
   align-self: center;
 }
 
-.slotOne, .slotSecond, .slotThree {
+.slotOne,
+.slotSecond,
+.slotThree {
   display: flex;
   justify-content: space-between;
 }

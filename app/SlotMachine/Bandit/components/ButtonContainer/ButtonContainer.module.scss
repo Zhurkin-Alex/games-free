@@ -4,13 +4,15 @@
   margin-top: 10px;
 }
 
-.total_plus, .total_minus {
+.total_plus,
+.total_minus {
   font-family: 'Londrina Solid', sans-serif;
   width: 50px;
   border-radius: 15px;
-  background: linear-gradient(0deg,rgb(4 20 33 / 80%),rgb(4 20 33 / 80%)),linear-gradient(0deg,#1d3c55,#1d3c55);
+  background: linear-gradient(0deg, rgb(4 20 33 / 80%), rgb(4 20 33 / 80%)),
+    linear-gradient(0deg, #1d3c55, #1d3c55);
   border: 2px solid #1d3c55;
-  color:#ffffff;
+  color: #ffffff;
   font-size: 18px;
 }
 
@@ -30,7 +32,7 @@
   border: none;
   border-radius: 15px;
   margin: 0 10px;
-  
+
   &:active {
     background: linear-gradient(180deg, #43c99c 0%, #149e61 69.78%, #097451 100%);
   }

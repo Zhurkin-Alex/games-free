@@ -1,11 +1,13 @@
-"use client";
-import React from "react";
-import { Inter } from "next/font/google";
-import Nav from "./Nav";
-import { GlobalStyle } from "./style";
-import { AppProvider } from "./context/AppContext";
+'use client'
 
-const inter = Inter({ subsets: ["latin"] });
+import { Inter } from 'next/font/google'
+import React from 'react'
+
+import Nav from './Nav'
+import { AppProvider } from './context/AppContext'
+import { GlobalStyle } from './style'
+
+const inter = Inter({ subsets: ['latin'] })
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <html lang="en">
@@ -20,6 +22,6 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
       </AppProvider>
     </body>
   </html>
-);
+)
 
-export default RootLayout;
+export default RootLayout

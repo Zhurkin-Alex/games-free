@@ -1,48 +1,59 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import React,{ useEffect, useState } from "react";
-import { Dropdown, DropdownItem, DropdownItemMemoryMatch, DropdownItemSlotMachine, Hamburger, StyledMarqueeText, StyledNav, Submenu } from "./style";
-import { ACTION_TYPE, useAppContext } from "../context/AppContext";
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+
+import { ACTION_TYPE, useAppContext } from '../context/AppContext'
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownItemMemoryMatch,
+  DropdownItemSlotMachine,
+  Hamburger,
+  StyledMarqueeText,
+  StyledNav,
+  Submenu,
+} from './style'
+
 const BAR_COUNT = 3
 const Nav = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-  const { state, dispatch } = useAppContext();
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
+  const { state, dispatch } = useAppContext()
 
   const toggleSubmenu = () => {
-    setIsSubmenuOpen(true);
+    setIsSubmenuOpen(true)
     dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: false })
-  };
+  }
 
   const toggleMenu = () => {
     if (isMenuOpen) {
-      setIsSubmenuOpen(false);
-      setIsMenuOpen(false);
+      setIsSubmenuOpen(false)
+      setIsMenuOpen(false)
     } else {
-      setIsMenuOpen(true);
+      setIsMenuOpen(true)
     }
     dispatch({ type: ACTION_TYPE.setOverlayClickCloseBurger, payload: false })
-  };
+  }
 
   useEffect(() => {
     if (state.overLayClickCloseBurger && isMenuOpen) {
-      setIsSubmenuOpen(false);
-      setIsMenuOpen(false);
+      setIsSubmenuOpen(false)
+      setIsMenuOpen(false)
     }
-  },[state.overLayClickCloseBurger])
+  }, [state.overLayClickCloseBurger])
 
   return (
-    <StyledNav >
+    <StyledNav>
       <StyledMarqueeText>
         <div className="marquee-content">
           <span>Место для вашей рекламы</span>
         </div>
       </StyledMarqueeText>
       <Hamburger onClick={toggleMenu}>
-      {Array.from({ length: BAR_COUNT }, (_, index) => (
-        <div key={index} />
-      ))}
+        {Array.from({ length: BAR_COUNT }, (_, index) => (
+          <div key={index} />
+        ))}
       </Hamburger>
       <Dropdown $isOpen={isMenuOpen}>
         <DropdownItem>
@@ -61,7 +72,7 @@ const Nav = () => {
         </DropdownItem>
       </Dropdown>
     </StyledNav>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav

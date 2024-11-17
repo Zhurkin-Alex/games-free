@@ -1,7 +1,9 @@
-"use client"
-import style from './Advertising.module.scss';
-import React from "react";
+'use client'
+
+import React from 'react'
+
 import coin from '../../img/slots/coin.png'
+import style from './Advertising.module.scss'
 
 interface IAdvertising {
   addCashADSHandler: () => void
@@ -26,19 +28,17 @@ const Advertising = ({
     <div className={style.won_wrapper}>
       <div className={style.won_box}>
         <div className={style.task}>
-          <span className={style.title}>
-            You have lost, complete the tasks and get the money
-          </span>
+          <span className={style.title}>You have lost, complete the tasks and get the money</span>
           <button
             className={style.buttonCash}
-            type='button'
+            type="button"
             onClick={addCashForFun}
           >
             <span className={style.text}> For fun </span>
             <span className={style.addCash}>
               <img
                 src={coin.src}
-                alt='image'
+                alt="image"
                 className={style.coin}
               />
               <div className={style.cash}>1500</div>
@@ -46,36 +46,31 @@ const Advertising = ({
           </button>
           <button
             className={style.buttonCash}
-            type='button'
+            type="button"
             onClick={addCashADSHandler}
           >
             <span className={style.text}> Watch ads </span>
             <span className={style.addCash}>
               <img
                 src={coin.src}
-                alt='image'
+                alt="image"
                 className={style.coin}
               />
               <div className={style.cash}>{addCashADS}</div>
             </span>
           </button>
           <button
-            className={
-              addCashPushDisable ? style.buttonCashFalse : style.buttonCash
-            }
-            type='button'
+            className={addCashPushDisable ? style.buttonCashFalse : style.buttonCash}
+            type="button"
             onClick={addCashPushHandler}
             disabled={addCashPushDisable}
           >
-            <span className={style.text}>
-              {' '}
-              Unlock Exclusive Benefits – Register Here!{' '}
-            </span>
+            <span className={style.text}> Unlock Exclusive Benefits – Register Here! </span>
             <span className={style.addCash}>
               <span className={style.addCash}>
                 <img
                   src={coin.src}
-                  alt='image'
+                  alt="image"
                   className={style.coin}
                 />
                 <div className={style.cash}>1200</div>
@@ -83,10 +78,8 @@ const Advertising = ({
             </span>
           </button>
           <button
-            className={
-              addCashRewardisDisable ? style.buttonCashFalse : style.buttonCash
-            }
-            type='button'
+            className={addCashRewardisDisable ? style.buttonCashFalse : style.buttonCash}
+            type="button"
             onClick={addCashRewardisHandler}
             disabled={addCashRewardisDisable}
           >
@@ -95,7 +88,7 @@ const Advertising = ({
               <span className={style.addCash}>
                 <img
                   src={coin.src}
-                  alt='image'
+                  alt="image"
                   className={style.coin}
                 />
                 <div className={style.cash}>2000</div>
@@ -105,7 +98,7 @@ const Advertising = ({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Advertising;
+export default Advertising

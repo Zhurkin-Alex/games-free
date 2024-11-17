@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const StyledNav = styled.nav`
   background: linear-gradient(to right, black, darkblue);
@@ -10,7 +10,7 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-`;
+`
 
 const Hamburger = styled.div`
   width: 30px;
@@ -25,7 +25,7 @@ const Hamburger = styled.div`
     width: 100%;
     height: 4px;
   }
-`;
+`
 
 const Dropdown = styled.ul<{ $isOpen: boolean }>`
   position: absolute;
@@ -36,17 +36,17 @@ const Dropdown = styled.ul<{ $isOpen: boolean }>`
   padding: 0;
   margin: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: ${(props) => (props.$isOpen ? "block" : "none")};
+  display: ${props => (props.$isOpen ? 'block' : 'none')};
   z-index: 1;
-`;
+`
 
 const Submenu = styled.ul<{ $isOpen: boolean }>`
   list-style: none;
   padding-left: 1rem;
   margin: 0;
-  display: ${(props) => (props.$isOpen ? "block" : "none")};
+  display: ${props => (props.$isOpen ? 'block' : 'none')};
   background-color: #f9f9f9;
-`;
+`
 
 const DropdownItem = styled.li`
   padding: 1rem;
@@ -62,7 +62,7 @@ const DropdownItem = styled.li`
     text-decoration: none;
     color: black;
   }
-`;
+`
 
 const DropdownItemSlotMachine = styled(DropdownItem)`
   padding: 1rem;
@@ -78,7 +78,7 @@ const DropdownItemSlotMachine = styled(DropdownItem)`
     text-decoration: none;
     color: black;
   }
-`;
+`
 
 const DropdownItemMemoryMatch = styled(DropdownItem)`
   padding: 1rem;
@@ -94,7 +94,7 @@ const DropdownItemMemoryMatch = styled(DropdownItem)`
     text-decoration: none;
     color: black;
   }
-`;
+`
 
 const StyledMarqueeText = styled.div`
   flex: 1;
@@ -129,7 +129,15 @@ const StyledMarqueeText = styled.div`
       transform: translateX(-100%);
     }
   }
-`;
+`
 
-
-export {StyledMarqueeText, StyledNav, Hamburger, Dropdown, Submenu, DropdownItem, DropdownItemSlotMachine, DropdownItemMemoryMatch}
+export {
+  StyledMarqueeText,
+  StyledNav,
+  Hamburger,
+  Dropdown,
+  Submenu,
+  DropdownItem,
+  DropdownItemSlotMachine,
+  DropdownItemMemoryMatch,
+}
