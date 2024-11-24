@@ -1,9 +1,15 @@
 const React = require('react')
 
-function createStyledComponent(tag, styles) {
-  const component = React.forwardRef((props, ref) => {
+function processTemplateString(strings, ...values) {
+  return strings.reduce((acc, str, i) => {
+    return acc + str + (values[i] || '')
+  }, '')
+}
+
+function createStyledComponent(tag, styles, baseComponent = null) {
+  const StyledComponent = React.forwardRef((props, ref) => {
     const { children, $isOpen, className = '', ...rest } = props
-    
+
     // Базовые стили для компонентов
     const baseStyles = {
       nav: {
@@ -32,26 +38,47 @@ function createStyledComponent(tag, styles) {
       ...rest.style,
     }
 
-    return React.createElement(
-      tag,
-      {
-        ...rest,
-        ref,
-        className: `styled-${tag} ${className}`.trim(),
-        style,
-        'data-testid': props['data-testid'] || `styled-${tag}`,
-      },
-      children
-    )
+    const componentProps = {
+      ...rest,
+      ref,
+      className: `styled-${tag} ${className}`.trim(),
+      style,
+      'data-testid': props['data-testid'] || `styled-${tag}`,
+    }
+
+    return baseComponent
+      ? React.createElement(baseComponent, componentProps, children)
+      : React.createElement(tag, componentProps, children)
   })
 
-  component.displayName = `Styled${tag.charAt(0).toUpperCase() + tag.slice(1)}`
-  component.toString = () => `styled.${tag}`
-  
-  // Добавляем поддержку withComponent
-  component.withComponent = (newTag) => createStyledComponent(newTag, styles)
-  
-  return component
+  StyledComponent.displayName = `Styled${tag.charAt(0).toUpperCase() + tag.slice(1)}`
+  StyledComponent.toString = () => `styled.${tag}`
+
+  return StyledComponent
+}
+
+function createStyledTag(tag) {
+  const styledTag = (...args) => {
+    // Обработка шаблонных литералов
+    if (Array.isArray(args[0])) {
+      return createStyledComponent(tag, processTemplateString(...args))
+    }
+    return createStyledComponent(tag, args[0])
+  }
+
+  styledTag.withConfig = config => {
+    return (...args) => {
+      const Component = Array.isArray(args[0])
+        ? createStyledComponent(tag, processTemplateString(...args))
+        : createStyledComponent(tag, args[0])
+
+      Component.displayName =
+        config.displayName || `Styled${tag.charAt(0).toUpperCase() + tag.slice(1)}`
+      return Component
+    }
+  }
+
+  return styledTag
 }
 
 const tags = [
@@ -78,42 +105,45 @@ const tags = [
   'form',
 ]
 
-const styled = new Proxy((Component) => {
-  return (...args) => {
-    if (typeof Component === 'string') {
-      return createStyledComponent(Component, args[0])
+function createStyledFunction(Component) {
+  const styledFunction = (...args) => {
+    if (Array.isArray(args[0])) {
+      return createStyledComponent('div', processTemplateString(...args), Component)
     }
-    
-    return React.forwardRef((props, ref) => {
-      const { className = '', style = {}, ...rest } = props
-      return React.createElement(Component, {
-        ...rest,
-        ref,
-        className: `styled-component ${className}`.trim(),
-        style: { ...style },
-        'data-testid': props['data-testid'] || 'styled-component',
-      })
-    })
+    return createStyledComponent('div', args[0], Component)
   }
-}, {
-  get: (target, property) => {
-    if (tags.includes(property)) {
-      return (...args) => createStyledComponent(property, args[0])
-    }
-    return target[property]
-  }
-})
 
-// Добавляем поддержку styled.tag
+  styledFunction.withConfig = config => {
+    return (...args) => {
+      const StyledComponent = Array.isArray(args[0])
+        ? createStyledComponent('div', processTemplateString(...args), Component)
+        : createStyledComponent('div', args[0], Component)
+
+      StyledComponent.displayName =
+        config.displayName || `Styled(${Component.displayName || Component.name || 'Component'})`
+      return StyledComponent
+    }
+  }
+
+  return styledFunction
+}
+
+const styled = Component => {
+  return createStyledFunction(Component)
+}
+
+// Добавляем все HTML теги как методы styled объекта
 tags.forEach(tag => {
-  styled[tag] = (...args) => createStyledComponent(tag, args[0])
+  styled[tag] = createStyledTag(tag)
 })
 
 module.exports = styled
 module.exports.default = styled
-module.exports.css = (...args) => args[0]
+module.exports.css = (...args) =>
+  Array.isArray(args[0]) ? processTemplateString(...args) : args[0]
 module.exports.createGlobalStyle = () => () => null
-module.exports.keyframes = styles => styles
+module.exports.keyframes = (...args) =>
+  Array.isArray(args[0]) ? processTemplateString(...args) : args[0]
 module.exports.ThemeProvider = ({ children }) => children
 module.exports.useTheme = () => ({
   colors: {
