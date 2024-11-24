@@ -1,30 +1,72 @@
 declare module '*.png' {
-  const content: string
+  const content: {
+    src: string
+    height: number
+    width: number
+  }
   export default content
 }
 
 declare module '*.webp' {
-  const content: string
+  const content: {
+    src: string
+    height: number
+    width: number
+  }
   export default content
 }
 
 declare module '*.jpg' {
-  const content: string
+  const content: {
+    src: string
+    height: number
+    width: number
+  }
   export default content
 }
 
 declare module '*.jpeg' {
-  const content: string
+  const content: {
+    src: string
+    height: number
+    width: number
+  }
   export default content
 }
 
 declare module '*.svg' {
-  const content: string
+  const content: {
+    src: string
+    height: number
+    width: number
+  }
   export default content
 }
 
 declare module '*.gif' {
-  const content: string
+  const content: {
+    src: string
+    height: number
+    width: number
+  }
+  export default content
+}
+
+declare module '*.ico' {
+  const content: {
+    src: string
+    height: number
+    width: number
+  }
+  export default content
+}
+
+declare module '*.bmp' {
+  const content: {
+    src: string
+    height: number
+    width: number
+  }
   export default content
 }
 
@@ -44,16 +86,26 @@ declare module '*.sass' {
 }
 
 declare module '*.module.css' {
-  const content: { [className: string]: string }
-  export default content
+  const classes: { [key: string]: string }
+  export default classes
 }
 
 declare module '*.module.scss' {
-  const content: { [className: string]: string }
-  export default content
+  const classes: { [key: string]: string }
+  export default classes
 }
 
 declare module '*.module.sass' {
-  const content: { [className: string]: string }
-  export default content
+  const classes: { [key: string]: string }
+  export default classes
+}
+
+declare module '*.module.less' {
+  const classes: { [key: string]: string }
+  export default classes
+}
+
+declare module '*.module.styl' {
+  const classes: { [key: string]: string }
+  export default classes
 }
