@@ -15,7 +15,6 @@ const Prize = ({ setShowWon, totalWin }: IPrize) => {
 
   const collectHandler = () => {
     setShowWon(false)
-    // console.warn('collect');
   }
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
