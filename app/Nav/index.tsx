@@ -16,6 +16,7 @@ import {
 } from './style'
 
 const BAR_COUNT = 3
+
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
@@ -44,28 +45,51 @@ const Nav = () => {
   }, [state.overLayClickCloseBurger])
 
   return (
-    <StyledNav>
+    <StyledNav
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <StyledMarqueeText>
         <div className="marquee-content">
           <span>Place for your advertisement</span>
         </div>
       </StyledMarqueeText>
-      <Hamburger onClick={toggleMenu}>
+      <Hamburger
+        onClick={toggleMenu}
+        role="button"
+        aria-label="Toggle menu"
+        aria-expanded={isMenuOpen}
+        aria-controls="main-menu"
+      >
         {Array.from({ length: BAR_COUNT }, (_, index) => (
           <div key={index} />
         ))}
       </Hamburger>
-      <Dropdown $isOpen={isMenuOpen}>
-        <DropdownItem>
+      <Dropdown
+        $isOpen={isMenuOpen}
+        id="main-menu"
+        role="menu"
+        aria-label="Main menu"
+      >
+        <DropdownItem role="menuitem">
           <Link href="/">Home</Link>
         </DropdownItem>
-        <DropdownItem onClick={toggleSubmenu}>
+        <DropdownItem
+          onClick={toggleSubmenu}
+          role="menuitem"
+          aria-haspopup="true"
+          aria-expanded={isSubmenuOpen}
+        >
           Games
-          <Submenu $isOpen={isSubmenuOpen}>
-            <DropdownItemSlotMachine>
+          <Submenu
+            $isOpen={isSubmenuOpen}
+            role="menu"
+            aria-label="Games submenu"
+          >
+            <DropdownItemSlotMachine role="menuitem">
               <Link href="/SlotMachine">SlotMachine</Link>
             </DropdownItemSlotMachine>
-            <DropdownItemMemoryMatch>
+            <DropdownItemMemoryMatch role="menuitem">
               <Link href="/MemoryMatch">Memory Match</Link>
             </DropdownItemMemoryMatch>
           </Submenu>
