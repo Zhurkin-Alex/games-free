@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
 import { ACTION_TYPE, useAppContext } from '../context/AppContext'
+import NavSkeleton from './skeleton'
 import {
   Dropdown,
   DropdownItem,
@@ -18,9 +19,19 @@ import {
 const BAR_COUNT = 3
 
 const Nav = () => {
+  const [isLoading, setIsLoading] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
   const { state, dispatch } = useAppContext()
+
+  useEffect(() => {
+    // Имитация загрузки данных
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   const toggleSubmenu = () => {
     setIsSubmenuOpen(true)
@@ -43,6 +54,10 @@ const Nav = () => {
       setIsMenuOpen(false)
     }
   }, [state.overLayClickCloseBurger])
+
+  if (isLoading) {
+    return <NavSkeleton />
+  }
 
   return (
     <StyledNav
