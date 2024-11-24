@@ -55,12 +55,10 @@ const Slot = ({
     if (winNumberSlot.length > 0) {
       for (let el = 0; el < winNumberSlot.length; el += 1) {
         if (winNumberSlot[el][0] + 1 === slot) {
-          // console.warn('winNumberSlot-el', slot);
           setwinSlot(true)
         }
       }
     }
-    // console.warn('winNumberSlot', winNumberSlot, slot);
   }, [winNumberSlot])
 
   return (
