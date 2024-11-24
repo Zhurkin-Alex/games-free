@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 # 🎮 Casino Games Project
 
 This is a modern casino games project built with Next.js 14, featuring engaging games and smooth animations. You can try it out here: [Live Demo](https://nextjs-snowy-six-62.vercel.app/)
