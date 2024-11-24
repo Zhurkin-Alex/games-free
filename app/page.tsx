@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import FlyingElements from './FlyingElements'
+import FlyingElementsPage from './FlyingElements/page'
 import { ACTION_TYPE, useAppContext } from './context/AppContext'
 import back from './img/back_casino.webp'
 import { StyledButtonContainer, StyledGameButtons, StyledPage, StyledText } from './style'
@@ -45,7 +45,7 @@ const App = () => {
             <StyledPage>🧠</StyledPage>
             <StyledText>Memory Game</StyledText>
           </Link>
-          <FlyingElements />
+          <FlyingElementsPage />
         </StyledButtonContainer>
       </StyledGameButtons>
     </StyledMain>

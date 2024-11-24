@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-import { ACTION_TYPE, useAppContext } from '../context/AppContext'
+import { ACTION_TYPE, useAppContext } from '../../context/AppContext'
 import NavSkeleton from './skeleton'
 import {
   Dropdown,

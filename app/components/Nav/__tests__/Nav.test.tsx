@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { ThemeProvider } from 'styled-components'
 
-import { AppProvider } from '../../context/AppContext'
+import { AppProvider } from '../../../context/AppContext'
 import Nav from '../index'
 import NavSkeleton from '../skeleton'
 

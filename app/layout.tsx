@@ -3,7 +3,7 @@
 import { Inter } from 'next/font/google'
 import React from 'react'
 
-import Nav from './Nav'
+import Nav from './components/Nav'
 import { AppProvider } from './context/AppContext'
 import { GlobalStyle } from './style'
 

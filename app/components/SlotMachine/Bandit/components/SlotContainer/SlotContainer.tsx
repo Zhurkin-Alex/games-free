@@ -1,8 +1,8 @@
 'use client'
 
+import randomInt from '@/app/services/_randomInt'
 import React from 'react'
 
-import randomInt from '../../../../services/_randomInt'
 import slot1 from '../../img/slots/slot-1.png'
 import slot2 from '../../img/slots/slot-2.png'
 import slot3 from '../../img/slots/slot-3.png'

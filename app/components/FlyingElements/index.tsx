@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-import chip from '../img/chip.webp'
+import chip from '../../img/chip.webp'
 
 const NUM_FLYING_ELEMENTS = 15
 

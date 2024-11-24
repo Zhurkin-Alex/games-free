@@ -1,9 +1,9 @@
 'use client'
 
+import storageService from '@/app/services/storageService'
 import React from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import storageService from '../../../../services/storageService'
 import { winMatrixData } from '../../data'
 import coin from '../../img/slots/coin.png'
 import Advertising from '../Advertising/Advertising'
