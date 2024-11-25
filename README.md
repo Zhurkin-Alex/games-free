@@ -91,7 +91,7 @@ yarn test
 ```
 nextjs/
 ├── app/                    # Next.js 14 app directory
-│   ├── components/         # Reusable components
+│   ├── components/         # Components
 │     ├── Nav/               # Navigation component
 │     ├── MemoryMatch/       # Memory Match game
 │     ├── SlotMachine/       # Slot Machine game
