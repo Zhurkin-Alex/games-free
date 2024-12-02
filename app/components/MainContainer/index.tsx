@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 import styled from 'styled-components'
 
+import Footer from '../Footer'
 import HomePageSkeleton from '../HomePage/skeleton'
 
 const StyledContainer = styled.div`
@@ -21,6 +22,7 @@ const MainContainer = ({ children }: { children?: React.ReactNode }) => {
     <StyledContainer>
       <HomePage />
       {children}
+      <Footer />
     </StyledContainer>
   )
 }
