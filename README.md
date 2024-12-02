@@ -91,11 +91,11 @@ yarn test
 ```
 nextjs/
 ├── app/                    # Next.js 14 app directory
-│   ├── components/         # Reusable components
-│   ├── context/           # React Context providers
-│   ├── Nav/               # Navigation component
-│   ├── MemoryMatch/       # Memory Match game
-│   └── SlotMachine/       # Slot Machine game
+│   ├── components/         # Components
+│     ├── Nav/               # Navigation component
+│     ├── MemoryMatch/       # Memory Match game
+│     ├── SlotMachine/       # Slot Machine game
+│   └── context/           # React Context providers
 ├── types/                 # TypeScript type definitions
 ├── __mocks__/            # Test mocks
 └── public/               # Static assets
