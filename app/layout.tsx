@@ -2,6 +2,7 @@
 
 import { Inter } from 'next/font/google'
 import React from 'react'
+import { Toaster } from 'sonner'
 import styled from 'styled-components'
 
 import Nav from './components/Nav'
@@ -26,6 +27,17 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
       <AppProvider>
         <StyledContainer>
           <Nav />
+          <Toaster
+            position="top-right"
+            richColors
+            toastOptions={{
+              style: {
+                padding: '10px',
+                borderRadius: '8px',
+                fontSize: '14px',
+              },
+            }}
+          />
           {children}
         </StyledContainer>
       </AppProvider>
