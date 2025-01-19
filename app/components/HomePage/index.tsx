@@ -1,19 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 
 import FlyingElementsPage from '../../FlyingElements/page'
 import { ACTION_TYPE, useAppContext } from '../../context/AppContext'
 import back from '../../img/back_casino.webp'
 import { StyledButtonContainer, StyledGameButtons, StyledPage, StyledText } from '../../style'
-
-const StyledMain = styled.main`
-  flex: 1;
-  justify-content: center;
-  display: flex;
-`
+import { StyleBAckgroundImg, StyledMain } from './style'
 
 const HomePage = () => {
   const { dispatch } = useAppContext()
@@ -24,11 +17,8 @@ const HomePage = () => {
 
   return (
     <StyledMain onClick={clickMenu}>
-      <img
+      <StyleBAckgroundImg
         src={back.src}
-        width={'100%'}
-        height={'100%'}
-        style={{ objectFit: 'cover', position: 'absolute' }}
         alt="logo"
       />
       <StyledGameButtons>

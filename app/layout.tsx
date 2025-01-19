@@ -19,7 +19,7 @@ const StyledContainer = styled.div`
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <html lang="en">
     <head>
-      <title>Alex_Zhurkin</title>
+      <title>Games for fun</title>
     </head>
     <body className={inter.className}>
       <GlobalStyle />

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const StyledWrapper = styled.div`
-  min-height: 100vh;
+  min-height: calc(100% - 62px);
   text-align: center;
   position: relative;
 `

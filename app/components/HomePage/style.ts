@@ -4,7 +4,6 @@ export const StyledMain = styled.main`
   flex: 1;
   justify-content: center;
   display: flex;
-  background: rgba(0, 0, 0, 0.1);
 `
 
 export const StyledGameButtonsSkeleton = styled.div`
@@ -52,6 +51,13 @@ export const StyledIconPlaceholder = styled.div`
   height: 50px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
+`
+
+export const StyleBAckgroundImg = styled.img`
+  height: calc(100% - 62px);
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
 `
 
 export const StyledTextPlaceholder = styled.div`
