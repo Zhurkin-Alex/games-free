@@ -33,21 +33,46 @@ const Registration = ({ closeModal, changeAuth }: IRegistration) => {
       return false
     }
     if (!/\S+@\S+\.\S+/.test(email)) {
-      toast.error('Invalid email format')
+      toast.error('Invalid email format, add @ and .')
       return false
     }
     if (password.length < 8) {
       toast.error('Password must be at least 8 characters')
       return false
     }
+    if (!/[a-zA-Z]/.test(password)) {
+      toast.error('Password must contain at least one letter')
+      return false
+    }
+    if (!/[0-9]/.test(password)) {
+      toast.error('Password must contain at least one number')
+      return false
+    }
     return true
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (validateForm()) {
+    if (!validateForm()) return
+
+    try {
+      const response = await fetch('http://localhost:4100/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.message)
+      }
+
       toast.success('Registration successful!')
       closeModal()
+    } catch (error: any) {
+      toast.error(error.message || 'Something went wrong!')
     }
   }
 
@@ -81,6 +106,7 @@ const Registration = ({ closeModal, changeAuth }: IRegistration) => {
           type={showPassword ? 'text' : 'password'}
           placeholder="Password (min 8 characters)"
           value={password}
+          autoComplete="off"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
         />
         <StyledEyeIcon onClick={togglePasswordVisibility}>

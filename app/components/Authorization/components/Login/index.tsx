@@ -1,3 +1,4 @@
+import storageService from '@/app/services/storageService'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
@@ -38,12 +39,31 @@ const Login = ({ closeModal, changeAuth }: ILogin) => {
     return true
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (validateForm()) {
-      console.log('Login with email and password:', email, password)
+    if (!validateForm()) return
+
+    try {
+      const response = await fetch('http://localhost:4100/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.message)
+      }
+
+      const data = await response.json()
+      storageService.set('token', data.token)
       toast.success('Login successful!')
+
       closeModal()
+    } catch (error: any) {
+      toast.error(error.message || 'Something went wrong!')
     }
   }
 
