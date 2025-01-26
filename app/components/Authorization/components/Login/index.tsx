@@ -62,8 +62,12 @@ const Login = ({ closeModal, changeAuth }: ILogin) => {
       toast.success('Login successful!')
 
       closeModal()
-    } catch (error: any) {
-      toast.error(error.message || 'Something went wrong!')
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message || 'Something went wrong!')
+      } else {
+        toast.error('An unexpected error occurred!')
+      }
     }
   }
 
