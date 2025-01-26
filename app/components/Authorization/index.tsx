@@ -31,12 +31,15 @@ const Authorization = ({ closeModal }: IAuthorization) => {
       }
 
       try {
-        const response = await fetch('http://localhost:4100/api/auth/validate', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const response = await fetch(
+          'https://server-prizma-supabase.vercel.app/api/auth/validate',
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        })
+        )
 
         if (response.ok) {
           const data = await response.json()

@@ -1,3 +1,4 @@
+import storageService from '@/app/services/storageService'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
@@ -56,7 +57,7 @@ const Registration = ({ closeModal, changeAuth }: IRegistration) => {
     if (!validateForm()) return
 
     try {
-      const response = await fetch('http://localhost:4100/api/auth/register', {
+      const response = await fetch('https://server-prizma-supabase.vercel.app/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,6 +69,11 @@ const Registration = ({ closeModal, changeAuth }: IRegistration) => {
         const error = await response.json()
         throw new Error(error.message)
       }
+
+      const data = await response.json()
+
+      // Сохраняем токен в localStorage
+      storageService.set('token', data.token)
 
       toast.success('Registration successful!')
       closeModal()

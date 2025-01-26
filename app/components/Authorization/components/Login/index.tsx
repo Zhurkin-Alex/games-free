@@ -44,7 +44,7 @@ const Login = ({ closeModal, changeAuth }: ILogin) => {
     if (!validateForm()) return
 
     try {
-      const response = await fetch('http://localhost:4100/api/auth/login', {
+      const response = await fetch('https://server-prizma-supabase.vercel.app/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
