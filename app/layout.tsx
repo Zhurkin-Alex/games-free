@@ -7,6 +7,7 @@ import styled from 'styled-components'
 
 import Nav from './components/Nav'
 import { AppProvider } from './context/AppContext'
+import { AuthProvider } from './context/AuthContext'
 import { GlobalStyle } from './style'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,21 +26,23 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <body className={inter.className}>
       <GlobalStyle />
       <AppProvider>
-        <StyledContainer>
-          <Nav />
-          <Toaster
-            position="top-right"
-            richColors
-            toastOptions={{
-              style: {
-                padding: '10px',
-                borderRadius: '8px',
-                fontSize: '14px',
-              },
-            }}
-          />
-          {children}
-        </StyledContainer>
+        <AuthProvider>
+          <StyledContainer>
+            <Nav />
+            <Toaster
+              position="top-right"
+              richColors
+              toastOptions={{
+                style: {
+                  padding: '10px',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                },
+              }}
+            />
+            {children}
+          </StyledContainer>
+        </AuthProvider>
       </AppProvider>
     </body>
   </html>

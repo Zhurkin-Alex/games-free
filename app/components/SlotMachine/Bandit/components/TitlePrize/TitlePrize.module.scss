@@ -10,6 +10,7 @@
   width: 300px;
   height: 100px;
   position: absolute;
+  cursor: pointer;
 }
 
 .advertisingBackGold {
@@ -67,4 +68,8 @@
   top: 4px;
   border-radius: 5px;
   z-index: 5;
+}
+
+.totalWinText {
+  text-align: center;
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import Authorization from '@/app/components/Authorization'
 import storageService from '@/app/services/storageService'
 import React from 'react'
 import { useEffect, useRef, useState } from 'react'
@@ -114,8 +115,6 @@ const SlotMachina = () => {
 
         if (checkArray) {
           setDisabledBet(true)
-          /** добавляем массив с выигрышными комбинациями */
-          // const winSlotArray = [];
 
           for (let el = 0; el < matrix.length; el += 1) {
             if (matrix[el] === 1) {
@@ -335,8 +334,12 @@ const SlotMachina = () => {
     }
   }, [addCashADSDisable, addCashPushDisable, addCashRewardisDisable])
 
+  const [isStartAuth, setIsStartAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(false)
+
   return (
     <div className={style.slotMashina}>
+      {isStartAuth && !isAuth && <Authorization setIsAuth={setIsAuth} />}
       {showWon && (
         <Prize
           setShowWon={setShowWon}
@@ -359,6 +362,8 @@ const SlotMachina = () => {
           totalForWin={totalForWin}
           addCashRewardisHandler={addCashRewardisHandler}
           widthPrize={widthPrize}
+          setIsStartAuth={setIsStartAuth}
+          isStartAuth={isStartAuth}
         />
         <div className={style.cashWrapper}>
           <div className={style.cashContainer}>

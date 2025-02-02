@@ -1,5 +1,6 @@
 'use client'
 
+import { useAuth } from '@/app/context/AuthContext'
 import React from 'react'
 
 import slotBackGold from '../../img/slots/slot-back-gold.png'
@@ -11,9 +12,25 @@ type TitlePrizeType = {
   totalForWin: number
   addCashRewardisHandler: () => unknown
   widthPrize: string
+  setIsStartAuth: (value: boolean) => void
+  isStartAuth: boolean
 }
 
-function TitlePrize({ totalForWin, addCashRewardisHandler, widthPrize }: TitlePrizeType) {
+const TitlePrize = ({
+  totalForWin,
+  addCashRewardisHandler,
+  widthPrize,
+  setIsStartAuth,
+  isStartAuth,
+}: TitlePrizeType) => {
+  const { isAuthToken, isLoading } = useAuth()
+
+  const authHandler = () => {
+    if (!isAuthToken) {
+      setIsStartAuth(true)
+    }
+  }
+
   return (
     <div className={style.advertising}>
       {totalForWin > 0 ? (
@@ -21,6 +38,7 @@ function TitlePrize({ totalForWin, addCashRewardisHandler, widthPrize }: TitlePr
           className={style.advertisingBack}
           src={slotBack.src}
           alt="prize-back"
+          onClick={authHandler}
         />
       ) : (
         <img
@@ -29,16 +47,24 @@ function TitlePrize({ totalForWin, addCashRewardisHandler, widthPrize }: TitlePr
           alt="prize-back"
         />
       )}
-      <TitlePrizeTexts
-        totalForWin={totalForWin}
-        addCashRewardisHandler={addCashRewardisHandler}
-      />
-      <div className={style.progressBox}>
-        <div
-          style={{ width: widthPrize }}
-          className={style.advertisingProgress}
-        />
-      </div>
+      {!isAuthToken && !isLoading && !isStartAuth ? (
+        <div className={style.advertisingCard}>
+          <span className={style.totalWinText}>Sign In and Win Real Prizes</span>
+        </div>
+      ) : (
+        <>
+          <TitlePrizeTexts
+            totalForWin={totalForWin}
+            addCashRewardisHandler={addCashRewardisHandler}
+          />
+          <div className={style.progressBox}>
+            <div
+              style={{ width: widthPrize }}
+              className={style.advertisingProgress}
+            />
+          </div>
+        </>
+      )}
     </div>
   )
 }

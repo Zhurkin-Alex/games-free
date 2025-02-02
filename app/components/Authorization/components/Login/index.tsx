@@ -12,11 +12,11 @@ import {
 } from './style'
 
 interface ILogin {
-  closeModal: () => void
+  setIsAuth: (type: boolean) => void
   changeAuth: (auth: 'login' | 'register') => void
 }
 
-const Login = ({ closeModal, changeAuth }: ILogin) => {
+const Login = ({ setIsAuth, changeAuth }: ILogin) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -61,7 +61,7 @@ const Login = ({ closeModal, changeAuth }: ILogin) => {
       storageService.set('token', data.token)
       toast.success('Login successful!')
 
-      closeModal()
+      setIsAuth(true)
     } catch (error: unknown) {
       if (error instanceof Error) {
         toast.error(error.message || 'Something went wrong!')
