@@ -5,6 +5,7 @@ import React from 'react'
 import slotBackGold from '../../img/slots/slot-back-gold.png'
 import slotBack from '../../img/slots/slot-back.png'
 import style from './TitlePrize.module.scss'
+import TitlePrizeTexts from './TitlePrizeTexts'
 
 type TitlePrizeType = {
   totalForWin: number
@@ -28,20 +29,10 @@ function TitlePrize({ totalForWin, addCashRewardisHandler, widthPrize }: TitlePr
           alt="prize-back"
         />
       )}
-      {totalForWin > 0 ? (
-        <div className={style.advertisingCard}>
-          <span className={style.totalWinText}>Win {totalForWin} and take the</span>
-          <span className={style.totalWin}>Iphone 14 pro </span>
-        </div>
-      ) : (
-        <button
-          type="button"
-          onClick={addCashRewardisHandler}
-          className={style.advertisingCardGold}
-        >
-          <span className={style.totalWinText}>Touch and take your prize</span>
-        </button>
-      )}
+      <TitlePrizeTexts
+        totalForWin={totalForWin}
+        addCashRewardisHandler={addCashRewardisHandler}
+      />
       <div className={style.progressBox}>
         <div
           style={{ width: widthPrize }}
