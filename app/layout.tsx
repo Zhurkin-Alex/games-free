@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 import Nav from './components/Nav'
 import { AppProvider } from './context/AppContext'
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider } from './context/AuthTokenContext'
 import { GlobalStyle } from './style'
 
 const inter = Inter({ subsets: ['latin'] })

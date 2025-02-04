@@ -1,3 +1,4 @@
+import { ACTION_TYPE, useAppContext } from '@/app/context/AppContext'
 import storageService from '@/app/services/storageService'
 import { useState } from 'react'
 import { toast } from 'sonner'
@@ -20,6 +21,7 @@ const Login = ({ setIsAuth, changeAuth }: ILogin) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const { dispatch } = useAppContext()
 
   const isActiveButton = Boolean(email.trim() && password.length >= 8)
 
@@ -59,6 +61,7 @@ const Login = ({ setIsAuth, changeAuth }: ILogin) => {
 
       const data = await response.json()
       storageService.set('token', data.token)
+      dispatch({ type: ACTION_TYPE.setIsUserAuth, payload: true })
       toast.success('Login successful!')
 
       setIsAuth(true)

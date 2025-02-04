@@ -1,6 +1,7 @@
 'use client'
 
-import { useAuth } from '@/app/context/AuthContext'
+import { useAppContext } from '@/app/context/AppContext'
+import { useAuth } from '@/app/context/AuthTokenContext'
 import React from 'react'
 
 import slotBackGold from '../../img/slots/slot-back-gold.png'
@@ -13,7 +14,6 @@ type TitlePrizeType = {
   addCashRewardisHandler: () => unknown
   widthPrize: string
   setIsStartAuth: (value: boolean) => void
-  isStartAuth: boolean
 }
 
 const TitlePrize = ({
@@ -21,9 +21,9 @@ const TitlePrize = ({
   addCashRewardisHandler,
   widthPrize,
   setIsStartAuth,
-  isStartAuth,
 }: TitlePrizeType) => {
   const { isAuthToken, isLoading } = useAuth()
+  const { state } = useAppContext()
 
   const authHandler = () => {
     if (!isAuthToken) {
@@ -47,7 +47,7 @@ const TitlePrize = ({
           alt="prize-back"
         />
       )}
-      {!isAuthToken && !isLoading && !isStartAuth ? (
+      {!isAuthToken && !isLoading && !state.isUserAuth ? (
         <div className={style.advertisingCard}>
           <span className={style.totalWinText}>Sign In and Win Real Prizes</span>
         </div>

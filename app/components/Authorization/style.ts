@@ -22,6 +22,7 @@ export const StyledModalContent = styled.div`
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   width: 90%;
   max-width: 400px;
+  z-index: 3;
 
   p {
     font-size: 16px;
@@ -61,4 +62,12 @@ export const StyledButtonLogin = styled(StyledButton)`
 export const StyledButtonAuth = styled(StyledButton)`
   background-color: #00aaff;
   color: #000000;
+`
+
+export const StyledOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `

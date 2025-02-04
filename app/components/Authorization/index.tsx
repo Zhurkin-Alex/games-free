@@ -9,6 +9,7 @@ import {
   StyledModal,
   StyledModalButtons,
   StyledModalContent,
+  StyledOverlay,
 } from './style'
 
 interface IAuthorization {
@@ -39,6 +40,7 @@ const Authorization = ({ setIsAuth }: IAuthorization) => {
 
   return (
     <StyledModal>
+      <StyledOverlay onClick={() => setIsAuth(true)} />
       <StyledModalContent>
         {isLogin && (
           <Login

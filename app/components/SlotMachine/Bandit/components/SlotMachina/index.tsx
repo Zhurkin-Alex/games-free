@@ -363,7 +363,6 @@ const SlotMachina = () => {
           addCashRewardisHandler={addCashRewardisHandler}
           widthPrize={widthPrize}
           setIsStartAuth={setIsStartAuth}
-          isStartAuth={isStartAuth}
         />
         <div className={style.cashWrapper}>
           <div className={style.cashContainer}>

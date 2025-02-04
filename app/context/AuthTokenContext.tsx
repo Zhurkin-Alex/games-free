@@ -8,7 +8,7 @@ interface AuthContextType {
   validateToken: () => Promise<void> // Функция для повторной проверки токена
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+const AuthTokenContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthToken, setAuthToken] = useState(false)
@@ -54,14 +54,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ isAuthToken, isLoading, validateToken }}>
+    <AuthTokenContext.Provider value={{ isAuthToken, isLoading, validateToken }}>
       {children}
-    </AuthContext.Provider>
+    </AuthTokenContext.Provider>
   )
 }
 
 export const useAuth = () => {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthTokenContext)
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider')
   }

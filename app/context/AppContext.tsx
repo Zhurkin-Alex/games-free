@@ -2,16 +2,21 @@ import React, { Dispatch, ReactNode, createContext, useContext, useReducer } fro
 
 interface AppState {
   overLayClickCloseBurger: boolean
+  isUserAuth: boolean
 }
 
 export enum ACTION_TYPE {
   setOverlayClickCloseBurger = 'setOverlayClickCloseBurger',
+  setIsUserAuth = 'setIsUserAuth',
 }
 
-type Action = { type: ACTION_TYPE.setOverlayClickCloseBurger; payload: boolean }
+type Action =
+  | { type: ACTION_TYPE.setOverlayClickCloseBurger; payload: boolean }
+  | { type: ACTION_TYPE.setIsUserAuth; payload: boolean }
 
 const initialState: AppState = {
   overLayClickCloseBurger: false,
+  isUserAuth: false,
 }
 
 const AppContext = createContext<{ state: AppState; dispatch: Dispatch<Action> } | undefined>(
@@ -22,6 +27,8 @@ const reducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case ACTION_TYPE.setOverlayClickCloseBurger:
       return { ...state, overLayClickCloseBurger: action.payload }
+    case ACTION_TYPE.setIsUserAuth:
+      return { ...state, isUserAuth: action.payload }
     default:
       return state
   }
