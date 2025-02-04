@@ -1,6 +1,7 @@
 'use client'
 
 import Authorization from '@/app/components/Authorization'
+import { useAuth } from '@/app/context/AuthTokenContext'
 import storageService from '@/app/services/storageService'
 import React from 'react'
 import { useEffect, useRef, useState } from 'react'
@@ -41,6 +42,15 @@ const SlotMachina = () => {
   const audioRef2 = useRef<HTMLAudioElement | null>(null)
   const audioRef3 = useRef<HTMLAudioElement | null>(null)
   const audioRefLos = useRef<HTMLAudioElement | null>(null)
+  const [widthPrize, setWidth] = useState(storageService.get('widthPrize') || '100%')
+  const [initialWidth, setInitialWidth] = useState(100)
+  const [totalForWin, setTotalForWin] = useState(Number(storageService.get('totalForWin')) || 3000)
+
+  const { validateToken } = useAuth()
+
+  useEffect(() => {
+    validateToken()
+  }, [])
 
   useEffect(() => {
     const cashStore = Number(storageService.get('cash'))
@@ -78,10 +88,6 @@ const SlotMachina = () => {
 
     return true
   }
-
-  const [widthPrize, setWidth] = useState(storageService.get('widthPrize') || '100%')
-  const [initialWidth, setInitialWidth] = useState(100)
-  const [totalForWin, setTotalForWin] = useState(Number(storageService.get('totalForWin')) || 3000)
 
   /** function for update prize component - TitlePrize */
   const updateTitlePrize = (value: number): void => {

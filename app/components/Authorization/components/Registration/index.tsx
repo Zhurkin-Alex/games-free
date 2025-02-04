@@ -1,3 +1,4 @@
+import { ACTION_TYPE, useAppContext } from '@/app/context/AppContext'
 import storageService from '@/app/services/storageService'
 import { useState } from 'react'
 import { toast } from 'sonner'
@@ -21,6 +22,7 @@ const Registration = ({ setIsAuth, changeAuth }: IRegistration) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const { dispatch } = useAppContext()
 
   const isActiveButton = Boolean(name.trim() && email.trim() && password.length >= 8)
 
@@ -74,6 +76,7 @@ const Registration = ({ setIsAuth, changeAuth }: IRegistration) => {
 
       // Сохраняем токен в localStorage
       storageService.set('token', data.token)
+      dispatch({ type: ACTION_TYPE.setIsUserAuth, payload: true })
 
       toast.success('Registration successful!')
       setIsAuth(true)

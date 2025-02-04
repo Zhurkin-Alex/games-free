@@ -1,18 +1,18 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 
 import storageService from '../services/storageService'
 
 interface AuthContextType {
   isAuthToken: boolean
   isLoading: boolean
-  validateToken: () => Promise<void> // Функция для повторной проверки токена
+  validateToken: () => Promise<void>
 }
 
 const AuthTokenContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthToken, setAuthToken] = useState(false)
-  const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(false)
 
   const validateToken = async () => {
     setLoading(true)
@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
       })
 
@@ -48,10 +49,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }
-
-  useEffect(() => {
-    validateToken()
-  }, [])
 
   return (
     <AuthTokenContext.Provider value={{ isAuthToken, isLoading, validateToken }}>
